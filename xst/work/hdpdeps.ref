@@ -1,0 +1,58 @@
+V3 37
+FL "C:/Users/Microsoft/Documents/ise projekter-filer/oscilloscope/BTNdb.vhd" 2021/06/03.22:49:20 P.40xd
+EN work/BTNdb 1622819338 \
+      FL "C:/Users/Microsoft/Documents/ise projekter-filer/oscilloscope/BTNdb.vhd" \
+      PB ieee/std_logic_1164 1350103243 PB ieee/std_logic_arith 1350103244 \
+      PB ieee/STD_LOGIC_UNSIGNED 1350103247
+AR work/BTNdb/Behavioral 1622819339 \
+      FL "C:/Users/Microsoft/Documents/ise projekter-filer/oscilloscope/BTNdb.vhd" \
+      EN work/BTNdb 1622819338
+FL "C:/Users/Microsoft/Documents/ise projekter-filer/oscilloscope/DivClk.vhd" 2021/06/03.22:49:19 P.40xd
+EN work/DivClk 1622819340 \
+      FL "C:/Users/Microsoft/Documents/ise projekter-filer/oscilloscope/DivClk.vhd" \
+      PB ieee/std_logic_1164 1350103243 PB ieee/std_logic_arith 1350103244 \
+      PB ieee/STD_LOGIC_UNSIGNED 1350103247
+AR work/DivClk/DivClk_arch 1622819341 \
+      FL "C:/Users/Microsoft/Documents/ise projekter-filer/oscilloscope/DivClk.vhd" \
+      EN work/DivClk 1622819340
+FL "C:/Users/Microsoft/Documents/ise projekter-filer/oscilloscope/ipcore_dir/SinusLUT.vhd" 2021/06/04.15:33:02 P.40xd
+EN work/SinusLUT 1622819336 \
+      FL "C:/Users/Microsoft/Documents/ise projekter-filer/oscilloscope/ipcore_dir/SinusLUT.vhd" \
+      PB ieee/std_logic_1164 1350103243
+AR work/SinusLUT/SinusLUT_a 1622819337 \
+      FL "C:/Users/Microsoft/Documents/ise projekter-filer/oscilloscope/ipcore_dir/SinusLUT.vhd" \
+      EN work/SinusLUT 1622819336
+FL "C:/Users/Microsoft/Documents/ise projekter-filer/oscilloscope/SevenSeg5.vhd" 2021/06/03.22:49:20 P.40xd
+EN work/SevenSeg5 1622819346 \
+      FL "C:/Users/Microsoft/Documents/ise projekter-filer/oscilloscope/SevenSeg5.vhd" \
+      PB ieee/std_logic_1164 1350103243 PB ieee/std_logic_arith 1350103244 \
+      PB ieee/STD_LOGIC_UNSIGNED 1350103247
+AR work/SevenSeg5/SevenSeg_arch 1622819347 \
+      FL "C:/Users/Microsoft/Documents/ise projekter-filer/oscilloscope/SevenSeg5.vhd" \
+      EN work/SevenSeg5 1622819346
+FL "C:/Users/Microsoft/Documents/ise projekter-filer/oscilloscope/SigGenControl.vhd" 2021/06/03.22:49:19 P.40xd
+EN work/SigGenControl 1622819342 \
+      FL "C:/Users/Microsoft/Documents/ise projekter-filer/oscilloscope/SigGenControl.vhd" \
+      PB ieee/std_logic_1164 1350103243 PB ieee/std_logic_arith 1350103244 \
+      PB ieee/STD_LOGIC_UNSIGNED 1350103247
+AR work/SigGenControl/Behavioral 1622819343 \
+      FL "C:/Users/Microsoft/Documents/ise projekter-filer/oscilloscope/SigGenControl.vhd" \
+      EN work/SigGenControl 1622819342 CP Disp CP BTNdb
+FL "C:/Users/Microsoft/Documents/ise projekter-filer/oscilloscope/SigGenDatapath.vhd" 2021/06/03.22:49:19 P.40xd
+EN work/SigGenDatapath 1622819344 \
+      FL "C:/Users/Microsoft/Documents/ise projekter-filer/oscilloscope/SigGenDatapath.vhd" \
+      PB ieee/std_logic_1164 1350103243 PB ieee/std_logic_arith 1350103244 \
+      PB ieee/STD_LOGIC_UNSIGNED 1350103247
+AR work/SigGenDatapath/Behavioral 1622819345 \
+      FL "C:/Users/Microsoft/Documents/ise projekter-filer/oscilloscope/SigGenDatapath.vhd" \
+      EN work/SigGenDatapath 1622819344 CP FreqCnt CP nSigCnt CP work/SinusLUT \
+      CP PWMwrap CP SigSquare CP SigSaw CP Sig CP PWM CP PWMout
+FL "C:/Users/Microsoft/Documents/ise projekter-filer/oscilloscope/SigGenTop.vhd" 2021/06/03.22:49:19 P.40xd
+EN work/SigGenTop 0 \
+      FL "C:/Users/Microsoft/Documents/ise projekter-filer/oscilloscope/SigGenTop.vhd" \
+      PB ieee/std_logic_1164 1350103243 PB ieee/std_logic_arith 1350103244 \
+      PB ieee/STD_LOGIC_UNSIGNED 1350103247
+AR work/SigGenTop/Behavioral 0 \
+      FL "C:/Users/Microsoft/Documents/ise projekter-filer/oscilloscope/SigGenTop.vhd" \
+      EN work/SigGenTop 0 CP work/DivClk CP work/SigGenControl \
+      CP work/SigGenDataPath CP work/SevenSeg5 CP LD

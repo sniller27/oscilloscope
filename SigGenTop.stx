@@ -1,0 +1,47 @@
+Release 14.3 - xst P.40xd (nt64)
+Copyright (c) 1995-2012 Xilinx, Inc.  All rights reserved.
+--> Parameter TMPDIR set to C:/Users/Microsoft/Documents/ise projekter-filer/oscilloscope/xst/projnav.tmp
+
+
+Total REAL time to Xst completion: 0.00 secs
+Total CPU time to Xst completion: 0.09 secs
+ 
+--> Parameter xsthdpdir set to C:/Users/Microsoft/Documents/ise projekter-filer/oscilloscope/xst
+
+
+Total REAL time to Xst completion: 0.00 secs
+Total CPU time to Xst completion: 0.11 secs
+ 
+--> WARNING:Xst:3164 - Option "-debug" found multiple times in the command line. Only the first occurence is considered.
+
+=========================================================================
+*                          HDL Compilation                              *
+=========================================================================
+Compiling vhdl file "C:/Users/Microsoft/Documents/ise projekter-filer/oscilloscope/ipcore_dir/SinusLUT.vhd" in Library work.
+Architecture sinuslut_a of Entity sinuslut is up to date.
+Compiling vhdl file "C:/Users/Microsoft/Documents/ise projekter-filer/oscilloscope/BTNdb.vhd" in Library work.
+Architecture behavioral of Entity btndb is up to date.
+Compiling vhdl file "C:/Users/Microsoft/Documents/ise projekter-filer/oscilloscope/DivClk.vhd" in Library work.
+Architecture divclk_arch of Entity divclk is up to date.
+Compiling vhdl file "C:/Users/Microsoft/Documents/ise projekter-filer/oscilloscope/SigGenControl.vhd" in Library work.
+Architecture behavioral of Entity siggencontrol is up to date.
+Compiling vhdl file "C:/Users/Microsoft/Documents/ise projekter-filer/oscilloscope/SigGenDatapath.vhd" in Library work.
+Architecture behavioral of Entity siggendatapath is up to date.
+Compiling vhdl file "C:/Users/Microsoft/Documents/ise projekter-filer/oscilloscope/SevenSeg5.vhd" in Library work.
+Architecture sevenseg_arch of Entity sevenseg5 is up to date.
+Compiling vhdl file "C:/Users/Microsoft/Documents/ise projekter-filer/oscilloscope/SigGenTop.vhd" in Library work.
+ERROR:HDLParsers:837 - "C:/Users/Microsoft/Documents/ise projekter-filer/oscilloscope/SigGenTop.vhd" Line 59. Width mismatch. Expected width 2, Actual width is 8 for dimension 1 of Shape.
+ERROR:HDLParsers:837 - "C:/Users/Microsoft/Documents/ise projekter-filer/oscilloscope/SigGenTop.vhd" Line 63. Width mismatch. Expected width 2, Actual width is 8 for dimension 1 of Shape.
+
+
+Total REAL time to Xst completion: 0.00 secs
+Total CPU time to Xst completion: 0.23 secs
+ 
+--> 
+
+Total memory usage is 4472736 kilobytes
+
+Number of errors   :    2 (   0 filtered)
+Number of warnings :    1 (   0 filtered)
+Number of infos    :    0 (   0 filtered)
+
