@@ -1,1 +1,1 @@
--intstyle "ise" -incremental -o "C:/Users/Microsoft/Documents/ise projekter-filer/oscilloscope/top_tb2_isim_beh.exe" -prj "C:/Users/Microsoft/Documents/ise projekter-filer/oscilloscope/top_tb2_beh.prj" "work.top_tb2" 
+-intstyle "ise" -incremental -o "C:/Users/Microsoft/Documents/ise projekter-filer/oscilloscope/datapath_tb1_isim_beh.exe" -prj "C:/Users/Microsoft/Documents/ise projekter-filer/oscilloscope/datapath_tb1_beh.prj" "work.datapath_tb1" 

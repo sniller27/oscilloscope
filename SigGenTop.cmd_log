@@ -1,3 +1,5 @@
 xst -intstyle ise -ifn "C:/Users/Microsoft/Documents/ise projekter-filer/oscilloscope/SigGenTop.xst" -ofn "C:/Users/Microsoft/Documents/ise projekter-filer/oscilloscope/SigGenTop.syr" 
 xst -intstyle ise -ifn "C:/Users/Microsoft/Documents/ise projekter-filer/oscilloscope/SigGenTop.xst" -ofn "C:/Users/Microsoft/Documents/ise projekter-filer/oscilloscope/SigGenTop.syr" 
 xst -intstyle ise -ifn "C:/Users/Microsoft/Documents/ise projekter-filer/oscilloscope/SigGenTop.xst" -ofn "C:/Users/Microsoft/Documents/ise projekter-filer/oscilloscope/SigGenTop.syr" 
+xst -intstyle ise -ifn "C:/Users/Microsoft/Documents/ise projekter-filer/oscilloscope/SigGenTop.xst" -ofn "C:/Users/Microsoft/Documents/ise projekter-filer/oscilloscope/SigGenTop.syr" 
+xst -intstyle ise -ifn "C:/Users/Microsoft/Documents/ise projekter-filer/oscilloscope/SigGenTop.xst" -ofn "C:/Users/Microsoft/Documents/ise projekter-filer/oscilloscope/SigGenTop.syr" 
