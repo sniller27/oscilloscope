@@ -1,5 +1,4 @@
 vhdl work "ipcore_dir/SinusLUT.vhd"
-vhdl work "BTNdb.vhd"
 vhdl work "SigGenDatapath.vhd"
 vhdl work "SigGenControl.vhd"
 vhdl work "SevenSeg5.vhd"

@@ -1,0 +1,3 @@
+vhdl isim_temp "BTNdb.vhd"
+vhdl isim_temp "SigGenControl.vhd"
+vhdl isim_temp "control_tb1.vhd"

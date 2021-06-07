@@ -102,21 +102,24 @@ begin
   end if;
 end process;
 
-StateDec: process (state, BTN0, BTN1db, BTN2db)
+StateDec: process (state, BTN0, BTN1, BTN2)
 begin
+
   SigEN <= '0';
   ShapeEN <= '0';
   AmplEN <= '0';
   FreqEN <= '0';
   DispSel <= "00";
   nState <= ShapeS;
+  
   case state is
+  
     when ShapeS =>
 	   ShapeEN <= BTN0;
 		DispSel <= "11";
-		if BTN2db = '1' then
+		if BTN2 = '1' then
 		  nState <= RunS;
-      elsif BTN1db =	'1' then
+      elsif BTN1 =	'1' then
 		  nState <= AmplS;
 		else
 		  nState <= ShapeS;
@@ -125,9 +128,9 @@ begin
     when AmplS =>
 	   AmplEN <= BTN0;
 		DispSel <= "10";
-		if BTN2db = '1' then
+		if BTN2 = '1' then
 		  nState <= RunS;
-      elsif BTN1db =	'1' then
+      elsif BTN1 =	'1' then
 		  nState <= FreqS;
 		else
 		  nState <= AmplS;
@@ -136,9 +139,9 @@ begin
     when FreqS =>
 	   FreqEN <= BTN0;
 		DispSel <= "01";
-		if BTN2db = '1' then
+		if BTN2 = '1' then
 		  nState <= RunS;
-      elsif BTN1db =	'1' then
+      elsif BTN1 =	'1' then
 		  nState <= ShapeS;
 		else
 		  nState <= FreqS;
@@ -147,17 +150,18 @@ begin
     when RunS =>
 	   SigEN <= '1';
 		DispSel <= "00";
-		if BTN2db = '1' then
+		if BTN2 = '1' then
 		  nState <= ShapeS;
       else
 		  nState <= RunS;
 		end if;
 
   end case;
+  
 end process;
 
-Deb1: BTNdb port map (Reset => Reset, Clk => Clk, BTNin => BTN1, BTNout => BTN1db);
+-- Deb1: BTNdb port map (Reset => Reset, Clk => Clk, BTNin => BTN1, BTNout => BTN1db);
 
-Deb2: BTNdb port map (Reset => Reset, Clk => Clk, BTNin => BTN2, BTNout => BTN2db);
+-- Deb2: BTNdb port map (Reset => Reset, Clk => Clk, BTNin => BTN2, BTNout => BTN2db);
 
 end Behavioral;
