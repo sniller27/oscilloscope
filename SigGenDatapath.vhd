@@ -45,7 +45,7 @@ begin
 
 FreqDec: FreqCnt <= "00" & Freq(7 downto 6) & Freq(5 downto 4) & '0' & Freq(3 downto 2) & '0' & Freq(1 downto 0);
 
-FreqAdd: nSigCnt <= SigCnt + FreqCnt; -- SigCnt incrementeres med FreqCnt (som er freq med 4 nullere mere hist og pist)
+FreqAdd: nSigCnt <= SigCnt + FreqCnt;
 
 
 SigReg: process (Reset, Clk)
@@ -53,7 +53,7 @@ begin
   if Reset = '1' then SigCnt <= X"000";
   elsif Clk'event and Clk = '1' then
     if PWMwrap = '1' then
-      SigCnt <= nSigCnt; -- SigCnt er tæller
+      SigCnt <= nSigCnt;
     end if;
   end if;
 end process;

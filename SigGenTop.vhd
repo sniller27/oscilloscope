@@ -56,7 +56,8 @@ U4: entity WORK.DivClk
 
 U1: entity WORK.SigGenControl 
     port map(Reset => BTN3, Clk => Mclk, BTN0 => BTN0, BTN1 => BTN1, BTN2 => BTN2, SW => SW, 
-	 Disp => Disp, Shape => Shape(1 downto 0), Ampl => Ampl, Freq => Freq, SigEN => SigEN);
+	 Disp => Disp, Shape => Shape(1 downto 0), Ampl => Ampl, Freq => Freq, SigEN=> SigEN);
+
 
 U2: entity WORK.SigGenDataPath generic map (PWMinc => "0000001") 
     port map(Reset => BTN3, Clk => Mclk, Shape => Shape(1 downto 0), Ampl => Ampl, Freq => Freq, SigEN=> SigEN, PWMOut => PWMOut);

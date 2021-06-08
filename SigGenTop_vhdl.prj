@@ -1,4 +1,5 @@
 vhdl work "C:\Users\Microsoft\Documents\ise projekter-filer\oscilloscope\ipcore_dir\SinusLUT.vhd"
+vhdl work "C:\Users\Microsoft\Documents\ise projekter-filer\oscilloscope\BTNdb.vhd"
 vhdl work "C:\Users\Microsoft\Documents\ise projekter-filer\oscilloscope\SigGenDatapath.vhd"
 vhdl work "C:\Users\Microsoft\Documents\ise projekter-filer\oscilloscope\SigGenControl.vhd"
 vhdl work "C:\Users\Microsoft\Documents\ise projekter-filer\oscilloscope\SevenSeg5.vhd"

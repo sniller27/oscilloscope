@@ -3,14 +3,14 @@ Copyright (c) 1995-2012 Xilinx, Inc.  All rights reserved.
 --> Parameter TMPDIR set to xst/projnav.tmp
 
 
-Total REAL time to Xst completion: 1.00 secs
-Total CPU time to Xst completion: 0.25 secs
+Total REAL time to Xst completion: 0.00 secs
+Total CPU time to Xst completion: 0.10 secs
  
 --> Parameter xsthdpdir set to xst
 
 
-Total REAL time to Xst completion: 1.00 secs
-Total CPU time to Xst completion: 0.25 secs
+Total REAL time to Xst completion: 0.00 secs
+Total CPU time to Xst completion: 0.10 secs
  
 --> Reading design: SigGenTop.prj
 
@@ -109,6 +109,8 @@ Cores Search Directories           : {"ipcore_dir"  }
 =========================================================================
 Compiling vhdl file "C:/Users/Microsoft/Documents/ise projekter-filer/oscilloscope/ipcore_dir/SinusLUT.vhd" in Library work.
 Architecture sinuslut_a of Entity sinuslut is up to date.
+Compiling vhdl file "C:/Users/Microsoft/Documents/ise projekter-filer/oscilloscope/BTNdb.vhd" in Library work.
+Architecture behavioral of Entity btndb is up to date.
 Compiling vhdl file "C:/Users/Microsoft/Documents/ise projekter-filer/oscilloscope/DivClk.vhd" in Library work.
 Architecture divclk_arch of Entity divclk is up to date.
 Compiling vhdl file "C:/Users/Microsoft/Documents/ise projekter-filer/oscilloscope/SigGenControl.vhd" in Library work.
@@ -134,6 +136,8 @@ Analyzing hierarchy for entity <SigGenDatapath> in library <work> (architecture 
 
 Analyzing hierarchy for entity <SevenSeg5> in library <work> (architecture <SevenSeg_arch>).
 
+Analyzing hierarchy for entity <BTNdb> in library <work> (architecture <behavioral>).
+
 
 =========================================================================
 *                            HDL Analysis                               *
@@ -146,6 +150,9 @@ Entity <DivClk> analyzed. Unit <DivClk> generated.
 
 Analyzing Entity <SigGenControl> in library <work> (Architecture <Behavioral>).
 Entity <SigGenControl> analyzed. Unit <SigGenControl> generated.
+
+Analyzing Entity <BTNdb> in library <work> (Architecture <behavioral>).
+Entity <BTNdb> analyzed. Unit <BTNdb> generated.
 
 Analyzing generic Entity <SigGenDatapath> in library <work> (Architecture <Behavioral>).
 	PWMinc = "0000001"
@@ -177,11 +184,50 @@ Synthesizing Unit <DivClk>.
 Unit <DivClk> synthesized.
 
 
+Synthesizing Unit <SevenSeg5>.
+    Related source file is "C:/Users/Microsoft/Documents/ise projekter-filer/oscilloscope/SevenSeg5.vhd".
+    Found 16x16-bit ROM for signal <DataN$rom0000>.
+    Found 4-bit register for signal <an>.
+    Found 8-bit register for signal <cat>.
+    Found 1-of-4 decoder for signal <AnInt>.
+    Found 1-bit 4-to-1 multiplexer for signal <Data$mux0000> created at line 90.
+    Found 4-bit 4-to-1 multiplexer for signal <DataN>.
+    Found 2-bit up counter for signal <DispCount>.
+    Summary:
+	inferred   1 ROM(s).
+	inferred   1 Counter(s).
+	inferred  12 D-type flip-flop(s).
+	inferred   5 Multiplexer(s).
+	inferred   1 Decoder(s).
+Unit <SevenSeg5> synthesized.
+
+
+Synthesizing Unit <BTNdb>.
+    Related source file is "C:/Users/Microsoft/Documents/ise projekter-filer/oscilloscope/BTNdb.vhd".
+    Found finite state machine <FSM_0> for signal <State>.
+    -----------------------------------------------------------------------
+    | States             | 4                                              |
+    | Transitions        | 8                                              |
+    | Inputs             | 2                                              |
+    | Outputs            | 6                                              |
+    | Clock              | Clk                       (rising_edge)        |
+    | Reset              | Reset                     (positive)           |
+    | Reset type         | asynchronous                                   |
+    | Reset State        | btnup                                          |
+    | Power Up State     | btnup                                          |
+    | Encoding           | automatic                                      |
+    | Implementation     | LUT                                            |
+    -----------------------------------------------------------------------
+    Found 12-bit up counter for signal <count>.
+    Summary:
+	inferred   1 Finite State Machine(s).
+	inferred   1 Counter(s).
+Unit <BTNdb> synthesized.
+
+
 Synthesizing Unit <SigGenControl>.
     Related source file is "C:/Users/Microsoft/Documents/ise projekter-filer/oscilloscope/SigGenControl.vhd".
-WARNING:Xst:1780 - Signal <BTN2db> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
-WARNING:Xst:1780 - Signal <BTN1db> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
-    Found finite state machine <FSM_0> for signal <State>.
+    Found finite state machine <FSM_1> for signal <State>.
     -----------------------------------------------------------------------
     | States             | 4                                              |
     | Transitions        | 11                                             |
@@ -202,24 +248,6 @@ WARNING:Xst:1780 - Signal <BTN1db> is never used or assigned. This unconnected s
 	inferred   1 Finite State Machine(s).
 	inferred  18 D-type flip-flop(s).
 Unit <SigGenControl> synthesized.
-
-
-Synthesizing Unit <SevenSeg5>.
-    Related source file is "C:/Users/Microsoft/Documents/ise projekter-filer/oscilloscope/SevenSeg5.vhd".
-    Found 16x16-bit ROM for signal <DataN$rom0000>.
-    Found 4-bit register for signal <an>.
-    Found 8-bit register for signal <cat>.
-    Found 1-of-4 decoder for signal <AnInt>.
-    Found 1-bit 4-to-1 multiplexer for signal <Data$mux0000> created at line 90.
-    Found 4-bit 4-to-1 multiplexer for signal <DataN>.
-    Found 2-bit up counter for signal <DispCount>.
-    Summary:
-	inferred   1 ROM(s).
-	inferred   1 Counter(s).
-	inferred  12 D-type flip-flop(s).
-	inferred   5 Multiplexer(s).
-	inferred   1 Decoder(s).
-Unit <SevenSeg5> synthesized.
 
 
 Synthesizing Unit <SigGenDatapath>.
@@ -263,7 +291,8 @@ Macro Statistics
  16-bit adder                                          : 7
  32-bit adder                                          : 4
  8-bit adder                                           : 1
-# Counters                                             : 3
+# Counters                                             : 5
+ 12-bit up counter                                     : 2
  2-bit up counter                                      : 1
  25-bit up counter                                     : 2
 # Accumulators                                         : 1
@@ -291,7 +320,7 @@ Macro Statistics
 *                       Advanced HDL Synthesis                          *
 =========================================================================
 
-Analyzing FSM <FSM_0> for best encoding.
+Analyzing FSM <FSM_1> for best encoding.
 Optimizing FSM <U1/State/FSM> on signal <State[1:2]> with user encoding.
 --------------------
  State  | Encoding
@@ -301,6 +330,17 @@ Optimizing FSM <U1/State/FSM> on signal <State[1:2]> with user encoding.
  freqs  | 10
  runs   | 11
 --------------------
+Analyzing FSM <FSM_0> for best encoding.
+Optimizing FSM <U1/Deb1/State/FSM> on signal <State[1:2]> with user encoding.
+Optimizing FSM <U1/Deb2/State/FSM> on signal <State[1:2]> with user encoding.
+----------------------
+ State    | Encoding
+----------------------
+ btnup    | 00
+ wbtnup   | 01
+ btndown  | 10
+ wbtndown | 11
+----------------------
 Reading core <ipcore_dir/SinusLUT.ngc>.
 Loading core <SinusLUT> for timing and area information for instance <SinusDec>.
 
@@ -308,14 +348,15 @@ Loading core <SinusLUT> for timing and area information for instance <SinusDec>.
 Advanced HDL Synthesis Report
 
 Macro Statistics
-# FSMs                                                 : 1
+# FSMs                                                 : 2
 # ROMs                                                 : 1
  16x16-bit ROM                                         : 1
 # Adders/Subtractors                                   : 12
  16-bit adder                                          : 7
  32-bit adder                                          : 4
  8-bit adder                                           : 1
-# Counters                                             : 3
+# Counters                                             : 5
+ 12-bit up counter                                     : 2
  2-bit up counter                                      : 1
  25-bit up counter                                     : 2
 # Accumulators                                         : 1
@@ -342,15 +383,15 @@ Macro Statistics
 
 Optimizing unit <SigGenTop> ...
 
-Optimizing unit <SigGenControl> ...
-
 Optimizing unit <SevenSeg5> ...
 
 Optimizing unit <SigGenDatapath> ...
 
+Optimizing unit <SigGenControl> ...
+
 Mapping all equations...
 Building and optimizing final netlist ...
-Found area constraint ratio of 100 (+ 5) on block SigGenTop, actual ratio is 16.
+Found area constraint ratio of 100 (+ 5) on block SigGenTop, actual ratio is 18.
 
 Final Macro Processing ...
 
@@ -358,8 +399,8 @@ Final Macro Processing ...
 Final Register Report
 
 Macro Statistics
-# Registers                                            : 106
- Flip-Flops                                            : 106
+# Registers                                            : 134
+ Flip-Flops                                            : 134
 
 =========================================================================
 
@@ -388,23 +429,24 @@ Design Statistics
 # IOs                              : 27
 
 Cell Usage :
-# BELS                             : 552
+# BELS                             : 637
 #      GND                         : 2
 #      INV                         : 6
 #      LUT1                        : 5
-#      LUT2                        : 42
-#      LUT3                        : 115
-#      LUT4                        : 97
-#      LUT4_D                      : 1
-#      LUT4_L                      : 1
+#      LUT2                        : 67
+#      LUT3                        : 119
+#      LUT3_D                      : 1
+#      LUT4                        : 104
+#      LUT4_D                      : 2
+#      LUT4_L                      : 2
 #      MULT_AND                    : 9
-#      MUXCY                       : 135
+#      MUXCY                       : 157
 #      MUXF5                       : 21
 #      VCC                         : 2
-#      XORCY                       : 116
-# FlipFlops/Latches                : 106
-#      FDC                         : 72
-#      FDCE                        : 32
+#      XORCY                       : 140
+# FlipFlops/Latches                : 134
+#      FDC                         : 76
+#      FDCE                        : 56
 #      FDP                         : 2
 # RAMS                             : 2
 #      RAMB16_S4_S4                : 2
@@ -421,9 +463,9 @@ Device utilization summary:
 
 Selected Device : 3s100ecp132-4 
 
- Number of Slices:                      145  out of    960    15%  
- Number of Slice Flip Flops:            105  out of   1920     5%  
- Number of 4 input LUTs:                267  out of   1920    13%  
+ Number of Slices:                      166  out of    960    17%  
+ Number of Slice Flip Flops:            133  out of   1920     6%  
+ Number of 4 input LUTs:                306  out of   1920    15%  
  Number of IOs:                          27
  Number of bonded IOBs:                  27  out of     83    32%  
     IOB Flip Flops:                       1
@@ -452,8 +494,8 @@ Clock Information:
 Clock Signal                       | Clock buffer(FF name)                                                                                                           | Load  |
 -----------------------------------+---------------------------------------------------------------------------------------------------------------------------------+-------+
 Clk                                | BUFGP                                                                                                                           | 52    |
-U0/Clk1_D1                         | BUFG                                                                                                                            | 42    |
 U4/Clk1_D                          | NONE(U3/DispCount_1)                                                                                                            | 14    |
+U0/Clk1_D1                         | BUFG                                                                                                                            | 70    |
 U2/SinusDec/N1                     | NONE(U2/SinusDec/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/s3_init.ram/dpram.dp4x4.ram)| 2     |
 -----------------------------------+---------------------------------------------------------------------------------------------------------------------------------+-------+
 INFO:Xst:2169 - HDL ADVISOR - Some clock signals were not automatically buffered by XST with BUFG/BUFR resources. Please use the buffer_type constraint in order to insert these buffers to the clock signals to help prevent skew problems.
@@ -463,7 +505,7 @@ Asynchronous Control Signals Information:
 -----------------------------------+------------------------+-------+
 Control Signal                     | Buffer(FF name)        | Load  |
 -----------------------------------+------------------------+-------+
-BTN3                               | IBUF                   | 106   |
+BTN3                               | IBUF                   | 134   |
 -----------------------------------+------------------------+-------+
 
 Timing Summary:
@@ -471,7 +513,7 @@ Timing Summary:
 Speed Grade: -4
 
    Minimum period: 7.940ns (Maximum Frequency: 125.950MHz)
-   Minimum input arrival time before clock: 3.800ns
+   Minimum input arrival time before clock: 3.940ns
    Maximum output required time after clock: 40.165ns
    Maximum combinational path delay: No path found
 
@@ -535,30 +577,6 @@ Delay:               7.940ns (Levels of Logic = 34)
                                        (75.8% logic, 24.2% route)
 
 =========================================================================
-Timing constraint: Default period analysis for Clock 'U0/Clk1_D1'
-  Clock period: 4.516ns (frequency: 221.435MHz)
-  Total number of paths / destination ports: 377 / 76
--------------------------------------------------------------------------
-Delay:               4.516ns (Levels of Logic = 3)
-  Source:            U2/PWMcntvar_mux0001_1 (FF)
-  Destination:       U2/PWMcntvar_mux0001_7 (FF)
-  Source Clock:      U0/Clk1_D1 rising
-  Destination Clock: U0/Clk1_D1 rising
-
-  Data Path: U2/PWMcntvar_mux0001_1 to U2/PWMcntvar_mux0001_7
-                                Gate     Net
-    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
-    ----------------------------------------  ------------
-     FDC:C->Q              6   0.591   0.844  U2/PWMcntvar_mux0001_1 (U2/PWMcntvar_mux0001_1)
-     LUT4_D:I0->LO         1   0.704   0.179  U2/PWMcntvar_mux0002<0>31 (N79)
-     LUT2:I1->O            2   0.704   0.482  U2/PWMcntvar_mux0002<0>21 (U2/PWMcntvar_mux0002<0>_bdd0)
-     LUT4:I2->O            1   0.704   0.000  U2/PWMcntvar_mux0002<0>11 (U2/PWMcntvar_mux0002<0>)
-     FDC:D                     0.308          U2/PWMcntvar_mux0001_7
-    ----------------------------------------
-    Total                      4.516ns (3.011ns logic, 1.505ns route)
-                                       (66.7% logic, 33.3% route)
-
-=========================================================================
 Timing constraint: Default period analysis for Clock 'U4/Clk1_D'
   Clock period: 5.299ns (frequency: 188.715MHz)
   Total number of paths / destination ports: 182 / 13
@@ -576,7 +594,7 @@ Delay:               5.299ns (Levels of Logic = 4)
      FDC:C->Q             15   0.591   1.192  U3/DispCount_0 (U3/DispCount_0)
      LUT3:I0->O            1   0.704   0.000  U3/Mmux_DataN_42 (U3/Mmux_DataN_42)
      MUXF5:I0->O          13   0.321   1.158  U3/Mmux_DataN_2_f5_1 (U3/DataN<2>)
-     LUT4:I0->O            1   0.704   0.000  U3/CatInt<6>_F (N67)
+     LUT4:I0->O            1   0.704   0.000  U3/CatInt<6>_F (N69)
      MUXF5:I0->O           1   0.321   0.000  U3/CatInt<6> (U3/CatInt<6>)
      FDC:D                     0.308          U3/cat_6
     ----------------------------------------
@@ -584,10 +602,35 @@ Delay:               5.299ns (Levels of Logic = 4)
                                        (55.7% logic, 44.3% route)
 
 =========================================================================
-Timing constraint: Default OFFSET IN BEFORE for Clock 'U0/Clk1_D1'
-  Total number of paths / destination ports: 40 / 38
+Timing constraint: Default period analysis for Clock 'U0/Clk1_D1'
+  Clock period: 5.795ns (frequency: 172.563MHz)
+  Total number of paths / destination ports: 829 / 104
 -------------------------------------------------------------------------
-Offset:              3.800ns (Levels of Logic = 2)
+Delay:               5.795ns (Levels of Logic = 4)
+  Source:            U1/Deb2/count_7 (FF)
+  Destination:       U1/State_FSM_FFd1 (FF)
+  Source Clock:      U0/Clk1_D1 rising
+  Destination Clock: U0/Clk1_D1 rising
+
+  Data Path: U1/Deb2/count_7 to U1/State_FSM_FFd1
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FDCE:C->Q             2   0.591   0.622  U1/Deb2/count_7 (U1/Deb2/count_7)
+     LUT4:I0->O            1   0.704   0.499  U1/Deb2/State_cmp_eq000017 (U1/Deb2/State_cmp_eq000017)
+     LUT3:I1->O            3   0.704   0.535  U1/Deb2/State_cmp_eq000043 (U1/Deb2/State_cmp_eq0000)
+     LUT4_D:I3->O          1   0.704   0.424  U1/State_FSM_FFd1-In2 (U1/State_FSM_N1)
+     LUT4:I3->O            1   0.704   0.000  U1/State_FSM_FFd1-In1 (U1/State_FSM_FFd1-In)
+     FDC:D                     0.308          U1/State_FSM_FFd1
+    ----------------------------------------
+    Total                      5.795ns (3.715ns logic, 2.080ns route)
+                                       (64.1% logic, 35.9% route)
+
+=========================================================================
+Timing constraint: Default OFFSET IN BEFORE for Clock 'U0/Clk1_D1'
+  Total number of paths / destination ports: 38 / 38
+-------------------------------------------------------------------------
+Offset:              3.940ns (Levels of Logic = 2)
   Source:            BTN0 (PAD)
   Destination:       U1/Ampl_7 (FF)
   Destination Clock: U0/Clk1_D1 rising
@@ -596,12 +639,12 @@ Offset:              3.800ns (Levels of Logic = 2)
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     IBUF:I->O             3   1.218   0.566  BTN0_IBUF (BTN0_IBUF)
-     LUT3:I2->O            8   0.704   0.757  U1/FreqEN1 (U1/FreqEN)
-     FDCE:CE                   0.555          U1/Freq_0
+     IBUF:I->O             3   1.218   0.706  BTN0_IBUF (BTN0_IBUF)
+     LUT3:I0->O            8   0.704   0.757  U1/AmplEN1 (U1/AmplEN)
+     FDCE:CE                   0.555          U1/Ampl_0
     ----------------------------------------
-    Total                      3.800ns (2.477ns logic, 1.323ns route)
-                                       (65.2% logic, 34.8% route)
+    Total                      3.940ns (2.477ns logic, 1.463ns route)
+                                       (62.9% logic, 37.1% route)
 
 =========================================================================
 Timing constraint: Default OFFSET OUT AFTER for Clock 'U0/Clk1_D1'
@@ -683,14 +726,14 @@ Offset:              4.283ns (Levels of Logic = 1)
 =========================================================================
 
 
-Total REAL time to Xst completion: 10.00 secs
-Total CPU time to Xst completion: 9.70 secs
+Total REAL time to Xst completion: 6.00 secs
+Total CPU time to Xst completion: 6.82 secs
  
 --> 
 
-Total memory usage is 4526100 kilobytes
+Total memory usage is 4526152 kilobytes
 
 Number of errors   :    0 (   0 filtered)
-Number of warnings :    4 (   0 filtered)
+Number of warnings :    2 (   0 filtered)
 Number of infos    :    1 (   0 filtered)
 

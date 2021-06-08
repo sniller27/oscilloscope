@@ -1,37 +1,29 @@
 # Udfyld selv pin assignment nedenfor ved ?
 
 #PACE: Start of PACE I/O Pin Assignments
-NET "An<0>"  LOC = "F12"  ; 
-NET "An<1>"  LOC = "J12"  ; 
-NET "An<2>"  LOC = "M13"  ; 
-NET "An<3>"  LOC = "K14"  ; 
+NET "An<0>"  LOC = "F12"; 
+NET "An<1>"  LOC = "J12"; 
+NET "An<2>"  LOC = "M13"; 
+NET "An<3>"  LOC = "K14"; 
 
 NET "BTN0"  LOC = "G12"  ; 
 NET "BTN1"  LOC = "C11"  ; 
 NET "BTN2"  LOC = "M4"  ; 
 NET "BTN3"  LOC = "A7"  ; 
 
-NET "Cat<0>"  LOC = "L14"  ; 
-NET "Cat<1>"  LOC = "H12"  ; 
-NET "Cat<2>"  LOC = "N14"  ; 
-NET "Cat<3>"  LOC = "N11"  ; 
-NET "Cat<4>"  LOC = "P12"  ; 
-NET "Cat<5>"  LOC = "L13"  ; 
-NET "Cat<6>"  LOC = "M12"  ; 
-NET "Cat<7>"  LOC = "N13"  ; 
+NET "Cat<0>"  LOC = "L14"; 
+NET "Cat<1>"  LOC = "H12"; 
+NET "Cat<2>"  LOC = "N14"; 
+NET "Cat<3>"  LOC = "N11"; 
+NET "Cat<4>"  LOC = "P12"; 
+NET "Cat<5>"  LOC = "L13"; 
+NET "Cat<6>"  LOC = "M12"; 
+NET "Cat<7>"  LOC = "N13"; 
 
-NET "Clk"  LOC = "B8"  ; 
+NET "Clk"  LOC = "B8"; 
 
 # Assignment of LED signal
-NET "LD[7]" LOC = "G12;
-NET "LD[6]" LOC = "P4";
-NET "LD[5]" LOC = "N4";
-NET "LD[4]" LOC = "N5";
-NET "LD[3]" LOC = "P6";
-NET "LD[2]" LOC = "P7";
-NET "LD[1]" LOC = "M11";
-NET "LD[0]" LOC = "M5";
-
+NET "LD"  LOC = "M5"  ;
 
 NET "SW<0>"  LOC = "P11"  ; 
 NET "SW<1>"  LOC = "L3"  ; 
