@@ -1,2 +1,1 @@
-work	"SigGenDatapath.vhd"
-work	"ipcore_dir/SinusLUT.vhd"
+work	"SigGenControl.vhd"

@@ -1,0 +1,2 @@
+vhdl work "SigGenControl.vhd"
+vhdl work "new_control_tb2.vhd"

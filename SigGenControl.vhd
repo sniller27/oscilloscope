@@ -23,14 +23,12 @@ use IEEE.STD_LOGIC_ARITH.ALL;
 use IEEE.STD_LOGIC_UNSIGNED.ALL;
 
 entity SigGenControl is
-  Port ( Reset  : in std_logic;	
-         Clk    : in std_logic;
-         BTN0    : in std_logic;
-         BTN1    : in std_logic;
-         BTN2    : in std_logic;
-         SW     : in std_logic_vector(7 downto 0);
+  Port ( RESET  : in std_logic;
+         CLK    : in std_logic;
+			data_in    : in std_logic;
+         SS    : in std_logic;
          Disp   : out std_logic_vector(19 downto 0);
-         Shape  : inout std_logic_vector(1 downto 0);
+         Shape  : inout std_logic_vector(7 downto 0);
          Ampl   : inout std_logic_vector(7 downto 0);
          Freq   : inout std_logic_vector(7 downto 0);
          SigEn  : out std_logic);
@@ -38,126 +36,104 @@ end SigGenControl;
 
 architecture Behavioral of SigGenControl is
 
-component BTNdb
-  port( Reset, Clk: in std_logic;
-        BTNin: in std_logic;
-        BTNout: out std_logic);
-end component;
+-- til tilstandsmaskine
+type StateType is (Sync, Read_address, Read_data, Checksum);
+signal State, NextState: StateType;
 
-signal BTN1db, BTN2db, ShapeEN, AmplEN, FreqEN: std_logic;
---signal SWshape, SWampl, SWfreq: std_logic_vector(7 downto 0);
-signal DispSel: std_logic_vector(1 downto 0);
-type StateType is (ShapeS, AmplS, FreqS, RunS);
-signal State, nState: StateType;  
+-- signaler
+signal Addr_Shape, Addr_Ampl, Addr_Freq: std_logic;
+signal SPIdat, RegVal, Selected_address: std_logic_vector(7 downto 0);  
 
 begin
 
-ShapeReg: process (Reset, Clk)
+-- shiftregister (skifter data ind)
+Shift_register: process (CLK, Reset)
 begin
-  if Reset = '1' then Shape <= "00";
-  elsif Clk'event and Clk = '1' then
-    if ShapeEn = '1' then
-      Shape <= SW(1 downto 0);
-    end if;
+	if (Reset = '1') then SPIdat <= X"00"; -- async reset
+	elsif (CLK'event and CLK = '0') then -- nedadgående flanke (falling edge)
+		SPIdat <= data_in & SPIdat(7 downto 1); -- skifter til højre
+		--SPIdat <= SPIdat(6 downto 0) & MOSI; -- skifter til venstre
+	end if;
+end process;
+
+-- next state (tilstandsmaskine)
+StateReg: process (Reset, CLK)
+begin
+  if RESET = '1' then State <= Sync;
+  elsif CLK'event and CLK = '1' then
+    State <= NextState;
   end if;
 end process;
 
-AmplReg: process (Reset, Clk)
+-- logik og tilstande (tilstandsmaskine)
+StateDec: process (State, data_in, SS) --State decoder: next state and output decoder (X er et udefrakommende input, der styrer tilstandsmaskinen)
 begin
-  if Reset = '1' then Ampl <= X"00";
-  elsif Clk'event and Clk = '1' then
-    if AmplEn = '1' then
-      Ampl <= SW;
-    end if;
-  end if;
+
+Shape <= "00000000"; -- default value
+Ampl <= "00000000"; -- default value
+Freq <= "00000000"; -- default value
+
+NextState <= State; -- set state (for at undgå latch?)
+
+case State is
+
+--Sync
+when Sync =>
+if SS='1' AND SPIdat="01010101" then
+	--RegVal <= SPIdat; -- initial checksum
+	NextState <= Read_address;
+end if;
+
+--Read_address
+when Read_address =>
+if SS='1' then
+
+	Selected_address <= SPIdat; -- gemmer addresse
+	--RegVal <= RegVal XOR SPIdat; -- update checksum
+	NextState <= Read_data;
+	
+end if;
+
+--Read_data
+when Read_data =>
+if SS='1' then
+
+-- set all data to zero
+Shape <= "00000000";
+Ampl <= "00000000";
+Freq <= "00000000";
+	
+	if Selected_address(7 downto 6)="00" then
+
+		Shape <= SPIdat;
+		
+	elsif Selected_address(7 downto 6)="01" then
+
+		Ampl <= SPIdat;
+		
+	elsif Selected_address(7 downto 6)="10" then
+
+		Freq <= SPIdat;
+		
+	end if;
+	
+	--RegVal <= RegVal XOR SPIdat; -- update checksum
+	NextState <= Checksum;
+	
+end if;
+
+--Checksum
+when Checksum =>
+
+RegVal <= "01010101" XOR Selected_address XOR Shape XOR Ampl XOR Freq;
+if SS='1' AND RegVal=SPIdat then
+	SigEn <= '1';
+	NextState <= Sync;
+end if;
+
+end case;
+
 end process;
 
-FreqReg: process (Reset, Clk)
-begin
-  if Reset = '1' then Freq <= X"00";
-  elsif Clk'event and Clk = '1' then
-    if FreqEn = '1' then
-      Freq <= SW;
-    end if;
-  end if;
-end process;
-
-DispMux: Disp <= X"F1230" when DispSel = "0" else
-                 X"4F0" & Freq when DispSel = X"1" else
-                 X"4A0" & Ampl when DispSel = X"2" else
-                 X"450" & "000000" & Shape;
-
---SWdec: process (SW)
---begin
---  if SW > X"03" then SWshape <= X"03"; else SWshape <= SW; end if;
---  if SW < X"FF" then SWampl  <= SW; else SWampl <= X"FF"; end if;
---  if SW < X"FF" then SWfreq  <= SW; else SWfreq <= X"FF"; end if;
---end process;
-
-StateReg: process (Reset, Clk)
-begin
-  if Reset = '1' then State <= ShapeS;
-  elsif Clk'event and Clk = '1' then
-    State <= nState;
-  end if;
-end process;
-
-StateDec: process (state, BTN0, BTN1db, BTN2db)
-begin
-  SigEN <= '0';
-  ShapeEN <= '0';
-  AmplEN <= '0';
-  FreqEN <= '0';
-  DispSel <= "00";
-  nState <= ShapeS;
-  case state is
-    when ShapeS =>
-	   ShapeEN <= BTN0;
-		DispSel <= "11";
-		if BTN2db = '1' then
-		  nState <= RunS;
-      elsif BTN1db =	'1' then
-		  nState <= AmplS;
-		else
-		  nState <= ShapeS;
-		end if;
-
-    when AmplS =>
-	   AmplEN <= BTN0;
-		DispSel <= "10";
-		if BTN2db = '1' then
-		  nState <= RunS;
-      elsif BTN1db =	'1' then
-		  nState <= FreqS;
-		else
-		  nState <= AmplS;
-		end if;
-
-    when FreqS =>
-	   FreqEN <= BTN0;
-		DispSel <= "01";
-		if BTN2db = '1' then
-		  nState <= RunS;
-      elsif BTN1db =	'1' then
-		  nState <= ShapeS;
-		else
-		  nState <= FreqS;
-		end if;
-
-    when RunS =>
-	   SigEN <= '1';
-		DispSel <= "00";
-		if BTN2db = '1' then
-		  nState <= ShapeS;
-      else
-		  nState <= RunS;
-		end if;
-
-  end case;
-end process;
-
-Deb1: BTNdb port map (Reset => Reset, Clk => Clk, BTNin => BTN1, BTNout => BTN1db);
-
-Deb2: BTNdb port map (Reset => Reset, Clk => Clk, BTNin => BTN2, BTNout => BTN2db);
 
 end Behavioral;
