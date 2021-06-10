@@ -43,6 +43,7 @@ signal State, NextState: StateType;
 -- signaler
 signal AdrEn, DataEn, ShapeEn, AmplEn, FreqEn: std_logic;
 signal SPIdat, RegVal, Addr, Data: std_logic_vector(7 downto 0);  
+signal DispSel: std_logic_vector(1 downto 0); -- display
 
 begin
 
@@ -116,10 +117,11 @@ begin
 end process;
 
 
-
-
-
-
+DispMux: Disp <= X"F1230" when DispSel = "0" else
+                 X"4F0" & Freq when DispSel = X"1" else
+                 X"4A0" & Ampl when DispSel = X"2" else
+                 X"450" & "000000" & Shape(7 downto 6);
+					  
 
 -- next state (tilstandsmaskine)
 StateReg: process (Reset, CLK)
@@ -137,6 +139,7 @@ begin
 AdrEn <= '0'; -- default value
 DataEn <= '0'; -- default value
 SigEn <= '0'; -- default value
+DispSel <= "00"; -- default value
 
 NextState <= State; -- set state (for at undgå latch?)
 
@@ -168,9 +171,15 @@ DataEn <= '1'; -- enable data reading
 if SS='1' then
 DataEn <= '0';		
 	-- transfer data to correct address by using standard register (?)
-	if Addr(7 downto 6)="00" then ShapeEn <= '1';
-	elsif Addr(7 downto 6)="01" then AmplEn <= '1';		
-	elsif Addr(7 downto 6)="10" then FreqEn <= '1';
+	if Addr(7 downto 6)="00" then 
+		ShapeEn <= '1';
+		DispSel <= "11";
+	elsif Addr(7 downto 6)="01" then 
+		AmplEn <= '1';
+		DispSel <= "10";
+	elsif Addr(7 downto 6)="10" then 
+		FreqEn <= '1';
+		DispSel <= "01";
 	end if;
 	
 --	if Addr(7 downto 6)="00" then Shape <= SPIdat; -- eller data

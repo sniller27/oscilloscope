@@ -1,4 +1,4 @@
-V3 35
+V3 36
 FL "C:/Users/Microsoft/Documents/ise projekter-filer/oscilloscope/BTNdb.vhd" 2021/06/03.22:49:20 P.40xd
 EN work/BTNdb 1623223598 \
       FL "C:/Users/Microsoft/Documents/ise projekter-filer/oscilloscope/BTNdb.vhd" \
@@ -30,14 +30,14 @@ EN work/SevenSeg5 1623265901 \
 AR work/SevenSeg5/SevenSeg_arch 1623265902 \
       FL "C:/Users/Microsoft/Documents/ise projekter-filer/oscilloscope/SevenSeg5.vhd" \
       EN work/SevenSeg5 1623265901
-FL "C:/Users/Microsoft/Documents/ise projekter-filer/oscilloscope/SigGenControl.vhd" 2021/06/10.11:00:21 P.40xd
-EN work/SigGenControl 1623316216 \
+FL "C:/Users/Microsoft/Documents/ise projekter-filer/oscilloscope/SigGenControl.vhd" 2021/06/10.11:21:02 P.40xd
+EN work/SigGenControl 1623316866 \
       FL "C:/Users/Microsoft/Documents/ise projekter-filer/oscilloscope/SigGenControl.vhd" \
       PB ieee/std_logic_1164 1350103243 PB ieee/std_logic_arith 1350103244 \
       PB ieee/STD_LOGIC_UNSIGNED 1350103247
-AR work/SigGenControl/Behavioral 1623316217 \
+AR work/SigGenControl/Behavioral 1623316867 \
       FL "C:/Users/Microsoft/Documents/ise projekter-filer/oscilloscope/SigGenControl.vhd" \
-      EN work/SigGenControl 1623316216
+      EN work/SigGenControl 1623316866 CP Disp
 FL "C:/Users/Microsoft/Documents/ise projekter-filer/oscilloscope/SigGenDatapath.vhd" 2021/06/03.22:49:19 P.40xd
 EN work/SigGenDatapath 1623265899 \
       FL "C:/Users/Microsoft/Documents/ise projekter-filer/oscilloscope/SigGenDatapath.vhd" \
