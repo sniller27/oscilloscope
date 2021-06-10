@@ -30,10 +30,9 @@ use IEEE.STD_LOGIC_UNSIGNED.ALL;
 entity SigGenTop is
   Port ( BTN3   : in std_logic;	
          Clk    : in std_logic;
-         BTN0   : in std_logic;
-         BTN1   : in std_logic;
-         BTN2   : in std_logic;
-         SW     : in std_logic_vector(7 downto 0);
+			SCK    : in std_logic;
+         MOSI   : in std_logic;
+         SS   : in std_logic;
 			An     : out std_logic_vector(3 downto 0);
 			Cat    : out std_logic_vector(7 downto 0);
 			LD		 : out std_logic;
@@ -55,8 +54,7 @@ U4: entity WORK.DivClk
     port map(Reset => BTN3, Clk => Clk, TimeP => 50e3, Clk1 => DispClk);
 
 U1: entity WORK.SigGenControl 
-    port map(Reset => BTN3, Clk => Mclk, BTN0 => BTN0, BTN1 => BTN1, BTN2 => BTN2, SW => SW, 
-	 Disp => Disp, Shape => Shape(1 downto 0), Ampl => Ampl, Freq => Freq, SigEN=> SigEN);
+    port map(Reset => BTN3, Clk => Mclk, MOSI => MOSI, SS => SS, Disp => Disp, Shape => Shape, Ampl => Ampl, Freq => Freq, SigEN=> SigEN);
 
 
 U2: entity WORK.SigGenDataPath generic map (PWMinc => "0000001") 
