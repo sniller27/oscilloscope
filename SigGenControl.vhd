@@ -25,7 +25,7 @@ use IEEE.STD_LOGIC_UNSIGNED.ALL;
 entity SigGenControl is
   Port ( RESET  : in std_logic;
          CLK    : in std_logic;
-			data_in    : in std_logic;
+			MOSI    : in std_logic;
          SS    : in std_logic;
          Disp   : out std_logic_vector(19 downto 0);
          Shape  : inout std_logic_vector(7 downto 0);
@@ -41,43 +41,38 @@ type StateType is (IdleS, AddrS, DataS, ChksumS);
 signal State, NextState: StateType;
 
 -- signaler
-signal Addr_Shape, Addr_Ampl, Addr_Freq, AdrEn, DataEn, ShapeEn, AmplEn, FreqEn: std_logic;
-signal SPIdat, RegVal, Selected_address, Addr, Data: std_logic_vector(7 downto 0);  
+signal AdrEn, DataEn, ShapeEn, AmplEn, FreqEn: std_logic;
+signal SPIdat, RegVal, Addr, Data: std_logic_vector(7 downto 0);  
 
 begin
 
--- MISO Register (skifteregister)
-MISO_Reg: process (CLK, Reset)
+-- MOSI Register (skifteregister) - skifter MOSI ind på hver clock til SPIdat hele tiden (data modtages via SPI)
+MOSI_Reg: process (CLK, Reset)
 begin
 	if (Reset = '1') then SPIdat <= X"00"; -- async reset
 	elsif (CLK'event and CLK = '0') then -- nedadgående flanke (falling edge)
-		SPIdat <= data_in & SPIdat(7 downto 1); -- skifter til højre
+		SPIdat <= MOSI & SPIdat(7 downto 1); -- skifter til højre
 	end if;
 end process;
 
-
-
-
-
-
--- Addresse Register (skifteregister)
+-- Addresse Register (skifteregister - skifter på Adr-flag efter synkronisering)
 AddrReg: process (CLK, Reset)
 begin
 	if (Reset = '1') then Addr <= X"00"; -- async reset
 	elsif (CLK'event and CLK = '0') then -- nedadgående flanke (falling edge)
 		if (AdrEn = '1') then
-			Addr <= data_in & Addr(7 downto 1); -- skifter til højre
+			Addr <= MOSI & Addr(7 downto 1); -- skifter til højre
 		end if;
 	end if;
 end process;
 
--- Data Register (skifteregister)
+-- Data Register (skifteregister - skifter på Data-flag efter addresse læsning)
 DataReg: process (CLK, Reset)
 begin
 	if (Reset = '1') then Data <= X"00"; -- async reset
 	elsif (CLK'event and CLK = '0') then -- nedadgående flanke (falling edge)
 		if (DataEn = '1') then
-			Data <= data_in & Data(7 downto 1); -- skifter til højre
+			Data <= MOSI & Data(7 downto 1); -- skifter til højre
 		end if;
 	end if;
 end process;
@@ -87,7 +82,7 @@ end process;
 
 
 
--- ShapeReg (standard register)
+-- ShapeReg (standard register - videregiver data til Shape)
 ShapeReg: process (CLK, Reset)
 begin
 	if (Reset = '1') then Shape <= X"00"; -- async reset
@@ -98,7 +93,7 @@ begin
 	end if;
 end process;
 
--- AmplReg (standard register)
+-- AmplReg (standard register  - videregiver data til Ampl)
 AmplReg: process (CLK, Reset)
 begin
 	if (Reset = '1') then Ampl <= X"00"; -- async reset
@@ -109,7 +104,7 @@ begin
 	end if;
 end process;
 
--- FreqReg (standard register)
+-- FreqReg (standard register - videregiver data til Freq)
 FreqReg: process (CLK, Reset)
 begin
 	if (Reset = '1') then Freq <= X"00"; -- async reset
@@ -136,15 +131,16 @@ begin
 end process;
 
 -- logik og tilstande (tilstandsmaskine)
-StateDec: process (State, data_in, SS) --State decoder: next state and output decoder (X er et udefrakommende input, der styrer tilstandsmaskinen)
+StateDec: process (State, MOSI, SS) --State decoder: next state and output decoder (X er et udefrakommende input, der styrer tilstandsmaskinen)
 begin
 
---AdrEn <= '0'; -- default value
---DataEn <= '0'; -- default value
+AdrEn <= '0'; -- default value
+DataEn <= '0'; -- default value
+--ShapeEn <= '0'; -- default value
+--AmplEn <= '0'; -- default value
+--FreqEn <= '0'; -- default value
+SigEn <= '0'; -- default value
 
-Shape <= "00000000"; -- default value
-Ampl <= "00000000"; -- default value
-Freq <= "00000000"; -- default value
 
 NextState <= State; -- set state (for at undgå latch?)
 
@@ -152,46 +148,60 @@ case State is
 
 --Sync
 when IdleS =>
-if SS='1' AND SPIdat="01010101" then -- 0x55
+Shape <= "00000000"; 
+Ampl <= "00000000";
+Freq <= "00000000";
 
-	-- synchronization succesfull (next state)
-	AdrEn <= '1';
+if SS='1' AND SPIdat="01010101" then -- 0x55
+	
+	-- start address reading
 	NextState <= AddrS;
 	
 end if;
 
 --Read address
 when AddrS =>
+AdrEn <= '1'; -- enable address reading
 if SS='1' then
-
-	-- address has been shifted in (next state)
-	if Addr(7 downto 6)="00" then ShapeEn <= '1';
-	elsif Addr(7 downto 6)="01" then AmplEn <= '1';		
-	elsif Addr(7 downto 6)="10" then FreqEn <= '1';
-	end if;
 	
-	DataEn <= '1';
+	-- start data reading
 	NextState <= DataS;
 	
 end if;
 
 --Read_data
 when DataS =>
-
+DataEn <= '1'; -- enable data reading
 if SS='1' then
-
-	-- data has been shifted in (next state)
+DataEn <= '0';		
+	-- transfer data to correct address by using standard register (?)
+--	if Addr(7 downto 6)="00" then ShapeEn <= '1';
+--	elsif Addr(7 downto 6)="01" then AmplEn <= '1';		
+--	elsif Addr(7 downto 6)="10" then FreqEn <= '1';
+--	end if;
+	
+	if Addr(7 downto 6)="00" then Shape <= SPIdat;
+	elsif Addr(7 downto 6)="01" then Ampl <= SPIdat;	
+	elsif Addr(7 downto 6)="10" then Freq <= SPIdat;
+	end if;
+		
+	-- start checksum reading
 	NextState <= ChksumS;
 	
 end if;
 
 --Checksum
 when ChksumS =>
--- BØR 'SIG_EN' SÆTTES I ET SEPARAT STANDARD REGISTER???
-RegVal <= "01010101" XOR Addr XOR Data;
-if SS='1' AND RegVal=SPIdat then
-	SigEn <= '1';
-	NextState <= IdleS;
+if SS='1' then
+
+	RegVal <= "01010101" XOR Addr XOR Data; -- checksum
+	
+	-- compare checksums
+	if RegVal=SPIdat then
+		SigEn <= '1';
+		NextState <= IdleS;
+	end if;
+	
 end if;
 
 end case;

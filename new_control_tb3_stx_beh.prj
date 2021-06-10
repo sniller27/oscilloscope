@@ -1,0 +1,2 @@
+vhdl isim_temp "SigGenControl.vhd"
+vhdl isim_temp "new_control_tb3.vhd"

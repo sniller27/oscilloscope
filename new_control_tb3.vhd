@@ -2,9 +2,9 @@
 -- Company: 
 -- Engineer:
 --
--- Create Date:   11:18:21 06/09/2021
+-- Create Date:   21:17:21 06/09/2021
 -- Design Name:   
--- Module Name:   C:/Users/Microsoft/Documents/ise projekter-filer/oscilloscope/new_control_tb2.vhd
+-- Module Name:   C:/Users/Microsoft/Documents/ise projekter-filer/oscilloscope/new_control_tb3.vhd
 -- Project Name:  oscilloscope
 -- Target Device:  
 -- Tool versions:  
@@ -32,10 +32,10 @@ USE ieee.std_logic_1164.ALL;
 -- arithmetic functions with Signed or Unsigned values
 --USE ieee.numeric_std.ALL;
  
-ENTITY new_control_tb2 IS
-END new_control_tb2;
+ENTITY new_control_tb3 IS
+END new_control_tb3;
  
-ARCHITECTURE behavior OF new_control_tb2 IS 
+ARCHITECTURE behavior OF new_control_tb3 IS 
  
     -- Component Declaration for the Unit Under Test (UUT)
  
@@ -43,7 +43,7 @@ ARCHITECTURE behavior OF new_control_tb2 IS
     PORT(
          RESET : IN  std_logic;
          CLK : IN  std_logic;
-         data_in : IN  std_logic;
+         MOSI : IN  std_logic;
          SS : IN  std_logic;
          Disp : OUT  std_logic_vector(19 downto 0);
          Shape : INOUT  std_logic_vector(7 downto 0);
@@ -57,7 +57,7 @@ ARCHITECTURE behavior OF new_control_tb2 IS
    --Inputs
    signal RESET : std_logic := '0';
    signal CLK : std_logic := '0';
-   signal data_in : std_logic := '0';
+   signal MOSI : std_logic := '0';
    signal SS : std_logic := '0';
 
 	--BiDirs
@@ -78,7 +78,7 @@ BEGIN
    uut: SigGenControl PORT MAP (
           RESET => RESET,
           CLK => CLK,
-          data_in => data_in,
+          MOSI => MOSI,
           SS => SS,
           Disp => Disp,
           Shape => Shape,
@@ -105,67 +105,67 @@ BEGIN
 		wait for Clk_period;
 		reset <= '0';
 		wait for Clk_period;
-      -- hold reset state for 100 ns.
-		
+      
 		--Sync
 		SS <= '1';
+		--MOSI <= '1'; -- den her ignoreres i sync
 		wait for Clk_period;
 		SS <= '0';
-		data_in <= '1';
+		MOSI <= '1';
 		wait for Clk_period;
-		data_in <= '0';
+		MOSI <= '0';
 		wait for Clk_period;
-		data_in <= '1';
+		MOSI <= '1';
 		wait for Clk_period;
-		data_in <= '0';
+		MOSI <= '0';
 		wait for Clk_period;
-		data_in <= '1';
+		MOSI <= '1';
 		wait for Clk_period;
-		data_in <= '0';
+		MOSI <= '0';
 		wait for Clk_period;
-		data_in <= '1';
+		MOSI <= '1';
 		wait for Clk_period;
-		data_in <= '0';
+		MOSI <= '0';
 		wait for Clk_period;
 		
 		--Address
 		SS <= '1';
-		data_in <= '0';
+		MOSI <= '0';
 		wait for Clk_period;
 		SS <= '0';
-		data_in <= '0';
+		MOSI <= '0';
 		wait for Clk_period;
-		data_in <= '0';
+		MOSI <= '0';
 		wait for Clk_period;
-		data_in <= '0';
+		MOSI <= '0';
 		wait for Clk_period;
-		data_in <= '0';
+		MOSI <= '0';
 		wait for Clk_period;
-		data_in <= '0';
+		MOSI <= '0';
 		wait for Clk_period;
-		data_in <= '1';
+		MOSI <= '1';
 		wait for Clk_period;
-		data_in <= '0';
+		MOSI <= '0';
 		wait for Clk_period;
 		
 		--Data
 		SS <= '1';
-		data_in <= '0';
+		MOSI <= '0';
 		wait for Clk_period;
 		SS <= '0';
-		data_in <= '0';
+		MOSI <= '0';
 		wait for Clk_period;
-		data_in <= '1';
+		MOSI <= '1';
 		wait for Clk_period;
-		data_in <= '1';
+		MOSI <= '1';
 		wait for Clk_period;
-		data_in <= '0';
+		MOSI <= '0';
 		wait for Clk_period;
-		data_in <= '0';
+		MOSI <= '0';
 		wait for Clk_period;
-		data_in <= '0';
+		MOSI <= '0';
 		wait for Clk_period;
-		data_in <= '1';
+		MOSI <= '1';
 		wait for Clk_period;
 		
 		SS <= '1';
@@ -173,26 +173,22 @@ BEGIN
 		SS <= '0';
 		
 		--CRC
-		data_in <= '0';
+		MOSI <= '0';
 		wait for Clk_period;
-		data_in <= '1';
+		MOSI <= '1';
 		wait for Clk_period;
-		data_in <= '0';
+		MOSI <= '0';
 		wait for Clk_period;
-		data_in <= '1';
+		MOSI <= '1';
 		wait for Clk_period;
-		data_in <= '0';
+		MOSI <= '0';
 		wait for Clk_period;
-		data_in <= '1';
+		MOSI <= '1';
 		wait for Clk_period;
-		data_in <= '1';
+		MOSI <= '1';
 		wait for Clk_period;
-		data_in <= '1';
+		MOSI <= '1';
 		wait for Clk_period;
-		
-		SS <= '1';
-		wait for Clk_period;
-		SS <= '0';
 
       wait;
    end process;
