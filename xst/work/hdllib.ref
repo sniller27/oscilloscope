@@ -2,12 +2,12 @@ AR siggendatapath behavioral "C:/Users/Microsoft/Documents/ise projekter-filer/o
 EN siggendatapath NULL "C:/Users/Microsoft/Documents/ise projekter-filer/oscilloscope/SigGenDatapath.vhd" sub00/vhpl08 1623265899
 EN sevenseg5 NULL "C:/Users/Microsoft/Documents/ise projekter-filer/oscilloscope/SevenSeg5.vhd" sub00/vhpl00 1623265901
 AR sevenseg5 sevenseg_arch "C:/Users/Microsoft/Documents/ise projekter-filer/oscilloscope/SevenSeg5.vhd" sub00/vhpl01 1623265902
-EN siggencontrol NULL "C:/Users/Microsoft/Documents/ise projekter-filer/oscilloscope/SigGenControl.vhd" sub00/vhpl04 1623268673
+EN siggencontrol NULL "C:/Users/Microsoft/Documents/ise projekter-filer/oscilloscope/SigGenControl.vhd" sub00/vhpl04 1623313331
 EN siggentop NULL "C:/Users/Microsoft/Documents/ise projekter-filer/oscilloscope/SigGenTop.vhd" sub00/vhpl12 1623265903
 AR siggentop behavioral "C:/Users/Microsoft/Documents/ise projekter-filer/oscilloscope/SigGenTop.vhd" sub00/vhpl13 1623138875
 AR btndb behavioral "C:/Users/Microsoft/Documents/ise projekter-filer/oscilloscope/BTNdb.vhd" sub00/vhpl03 1623223599
 AR sinuslut sinuslut_a "C:/Users/Microsoft/Documents/ise projekter-filer/oscilloscope/ipcore_dir/SinusLUT.vhd" sub00/vhpl10 1623265894
-AR siggencontrol behavioral "C:/Users/Microsoft/Documents/ise projekter-filer/oscilloscope/SigGenControl.vhd" sub00/vhpl05 1623268674
+AR siggencontrol behavioral "C:/Users/Microsoft/Documents/ise projekter-filer/oscilloscope/SigGenControl.vhd" sub00/vhpl05 1623313332
 EN divclk NULL "C:/Users/Microsoft/Documents/ise projekter-filer/oscilloscope/DivClk.vhd" sub00/vhpl06 1623265895
 EN btndb NULL "C:/Users/Microsoft/Documents/ise projekter-filer/oscilloscope/BTNdb.vhd" sub00/vhpl02 1623223598
 EN sinuslut NULL "C:/Users/Microsoft/Documents/ise projekter-filer/oscilloscope/ipcore_dir/SinusLUT.vhd" sub00/vhpl09 1623265893

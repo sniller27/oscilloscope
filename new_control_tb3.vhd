@@ -105,7 +105,7 @@ BEGIN
 		wait for Clk_period;
 		reset <= '0';
 		wait for Clk_period;
-      
+       
 		--Sync
 		SS <= '1';
 		--MOSI <= '1'; -- den her ignoreres i sync
@@ -126,6 +126,7 @@ BEGIN
 		MOSI <= '1';
 		wait for Clk_period;
 		MOSI <= '0';
+		-- SS <= '1'; -- burde være her...men virker ikke?
 		wait for Clk_period;
 		
 		--Address
@@ -173,23 +174,27 @@ BEGIN
 		SS <= '0';
 		
 		--CRC
-		MOSI <= '0';
-		wait for Clk_period;
 		MOSI <= '1';
 		wait for Clk_period;
 		MOSI <= '0';
 		wait for Clk_period;
-		MOSI <= '1';
-		wait for Clk_period;
 		MOSI <= '0';
 		wait for Clk_period;
 		MOSI <= '1';
 		wait for Clk_period;
 		MOSI <= '1';
 		wait for Clk_period;
+		MOSI <= '0';
+		wait for Clk_period;
+		MOSI <= '0';
+		wait for Clk_period;
 		MOSI <= '1';
 		wait for Clk_period;
-
+		
+		SS <= '1';
+		wait for Clk_period;
+		SS <= '0';
+ 
       wait;
    end process;
 

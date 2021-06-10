@@ -50,7 +50,7 @@ begin
 MOSI_Reg: process (CLK, Reset)
 begin
 	if (Reset = '1') then SPIdat <= X"00"; -- async reset
-	elsif (CLK'event and CLK = '0') then -- nedadgående flanke (falling edge)
+	elsif (CLK'event and CLK = '1') then -- nedadgående flanke (falling edge)
 		SPIdat <= MOSI & SPIdat(7 downto 1); -- skifter til højre
 	end if;
 end process;
@@ -59,7 +59,7 @@ end process;
 AddrReg: process (CLK, Reset)
 begin
 	if (Reset = '1') then Addr <= X"00"; -- async reset
-	elsif (CLK'event and CLK = '0') then -- nedadgående flanke (falling edge)
+	elsif (CLK'event and CLK = '1') then -- nedadgående flanke (falling edge)
 		if (AdrEn = '1') then
 			Addr <= MOSI & Addr(7 downto 1); -- skifter til højre
 		end if;
@@ -70,7 +70,7 @@ end process;
 DataReg: process (CLK, Reset)
 begin
 	if (Reset = '1') then Data <= X"00"; -- async reset
-	elsif (CLK'event and CLK = '0') then -- nedadgående flanke (falling edge)
+	elsif (CLK'event and CLK = '1') then -- nedadgående flanke (falling edge)
 		if (DataEn = '1') then
 			Data <= MOSI & Data(7 downto 1); -- skifter til højre
 		end if;
@@ -88,7 +88,7 @@ begin
 	if (Reset = '1') then Shape <= X"00"; -- async reset
 	elsif (CLK'event and CLK = '0') then -- nedadgående flanke (falling edge)
 		if (ShapeEn = '1') then
-			Shape <= SPIdat;
+			Shape <= Data;
 		end if;
 	end if;
 end process;
@@ -99,7 +99,7 @@ begin
 	if (Reset = '1') then Ampl <= X"00"; -- async reset
 	elsif (CLK'event and CLK = '0') then -- nedadgående flanke (falling edge)
 		if (AmplEn = '1') then
-			Ampl <= SPIdat;
+			Ampl <= Data;
 		end if;
 	end if;
 end process;
@@ -110,7 +110,7 @@ begin
 	if (Reset = '1') then Freq <= X"00"; -- async reset
 	elsif (CLK'event and CLK = '0') then -- nedadgående flanke (falling edge)
 		if (FreqEn = '1') then
-			Freq <= SPIdat;
+			Freq <= Data;
 		end if;
 	end if;
 end process;
@@ -125,7 +125,7 @@ end process;
 StateReg: process (Reset, CLK)
 begin
   if RESET = '1' then State <= IdleS;
-  elsif CLK'event and CLK = '1' then
+  elsif CLK'event and CLK = '0' then
     State <= NextState;
   end if;
 end process;
@@ -140,7 +140,7 @@ DataEn <= '0'; -- default value
 --AmplEn <= '0'; -- default value
 --FreqEn <= '0'; -- default value
 SigEn <= '0'; -- default value
-
+--Freq <= "11111000";
 
 NextState <= State; -- set state (for at undgå latch?)
 
@@ -148,9 +148,9 @@ case State is
 
 --Sync
 when IdleS =>
-Shape <= "00000000"; 
-Ampl <= "00000000";
-Freq <= "00000000";
+--Shape <= "00000000"; 
+--Ampl <= "00000000";
+--Freq <= "00000000";
 
 if SS='1' AND SPIdat="01010101" then -- 0x55
 	
@@ -163,10 +163,10 @@ end if;
 when AddrS =>
 AdrEn <= '1'; -- enable address reading
 if SS='1' then
-	
+	AdrEn <= '0';
 	-- start data reading
 	NextState <= DataS;
-	
+	 
 end if;
 
 --Read_data
@@ -175,15 +175,15 @@ DataEn <= '1'; -- enable data reading
 if SS='1' then
 DataEn <= '0';		
 	-- transfer data to correct address by using standard register (?)
---	if Addr(7 downto 6)="00" then ShapeEn <= '1';
---	elsif Addr(7 downto 6)="01" then AmplEn <= '1';		
---	elsif Addr(7 downto 6)="10" then FreqEn <= '1';
---	end if;
-	
-	if Addr(7 downto 6)="00" then Shape <= SPIdat;
-	elsif Addr(7 downto 6)="01" then Ampl <= SPIdat;	
-	elsif Addr(7 downto 6)="10" then Freq <= SPIdat;
+	if Addr(7 downto 6)="00" then ShapeEn <= '1';
+	elsif Addr(7 downto 6)="01" then AmplEn <= '1';		
+	elsif Addr(7 downto 6)="10" then FreqEn <= '1';
 	end if;
+	
+--	if Addr(7 downto 6)="00" then Shape <= SPIdat; -- eller data
+--	elsif Addr(7 downto 6)="01" then Ampl <= SPIdat; -- eller data
+--	elsif Addr(7 downto 6)="10" then Freq <= SPIdat; -- eller data
+--	end if;
 		
 	-- start checksum reading
 	NextState <= ChksumS;
@@ -192,10 +192,15 @@ end if;
 
 --Checksum
 when ChksumS =>
+-- stop updating values
+ShapeEn <= '0';
+AmplEn <= '0';
+FreqEn <= '0';
+
+RegVal <= "01010101" XOR Addr XOR Data; -- checksum
+
 if SS='1' then
 
-	RegVal <= "01010101" XOR Addr XOR Data; -- checksum
-	
 	-- compare checksums
 	if RegVal=SPIdat then
 		SigEn <= '1';
