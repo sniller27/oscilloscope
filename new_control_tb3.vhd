@@ -108,9 +108,9 @@ BEGIN
        
 		--Sync
 		SS <= '1';
-		--MOSI <= '1'; -- den her ignoreres i sync
 		wait for Clk_period;
 		SS <= '0';
+		
 		MOSI <= '1';
 		wait for Clk_period;
 		MOSI <= '0';
@@ -126,14 +126,15 @@ BEGIN
 		MOSI <= '1';
 		wait for Clk_period;
 		MOSI <= '0';
-		-- SS <= '1'; -- burde være her...men virker ikke?
 		wait for Clk_period;
 		
 		--Address
 		SS <= '1';
-		MOSI <= '0';
 		wait for Clk_period;
 		SS <= '0';
+		
+		MOSI <= '0';
+		wait for Clk_period;
 		MOSI <= '0';
 		wait for Clk_period;
 		MOSI <= '0';
@@ -151,9 +152,11 @@ BEGIN
 		
 		--Data
 		SS <= '1';
-		MOSI <= '0';
 		wait for Clk_period;
 		SS <= '0';
+		
+		MOSI <= '0';
+		wait for Clk_period;
 		MOSI <= '0';
 		wait for Clk_period;
 		MOSI <= '1';

@@ -136,11 +136,7 @@ begin
 
 AdrEn <= '0'; -- default value
 DataEn <= '0'; -- default value
---ShapeEn <= '0'; -- default value
---AmplEn <= '0'; -- default value
---FreqEn <= '0'; -- default value
 SigEn <= '0'; -- default value
---Freq <= "11111000";
 
 NextState <= State; -- set state (for at undgå latch?)
 
@@ -148,9 +144,6 @@ case State is
 
 --Sync
 when IdleS =>
---Shape <= "00000000"; 
---Ampl <= "00000000";
---Freq <= "00000000";
 
 if SS='1' AND SPIdat="01010101" then -- 0x55
 	

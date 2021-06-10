@@ -2,14 +2,14 @@ Command line:
    new_control_tb3_isim_beh.exe
      -simmode  gui
      -simrunnum  0
-     -socket  55962
+     -socket  59033
 
-Thu Jun 10 10:53:23 2021
+Thu Jun 10 11:10:45 2021
 
 
  Elaboration Time: 0.015625 sec
 
- Current Memory Usage: 5145.14 Meg
+ Current Memory Usage: 5145.17 Meg
 
  Total Signals          : 29
  Total Nets             : 88
@@ -19,11 +19,11 @@ Thu Jun 10 10:53:23 2021
  Total Processes        : 10
  Total Traceable Variables  : 11
  Total Scalar Nets and Variables : 467
-Total Line Count : 131
+Total Line Count : 133
 
- Total Simulation Time: 0.09375 sec
+ Total Simulation Time: 0.140625 sec
 
- Current Memory Usage: 5145.14 Meg
+ Current Memory Usage: 5145.17 Meg
 
-Thu Jun 10 10:53:48 2021
+Thu Jun 10 11:11:08 2021
 
