@@ -1,1 +1,1 @@
--intstyle "ise" -incremental -o "C:/Users/Microsoft/Documents/ise projekter-filer/oscilloscope/new_control_tb3_isim_beh.exe" -prj "C:/Users/Microsoft/Documents/ise projekter-filer/oscilloscope/new_control_tb3_beh.prj" "new_control_tb3" 
+-intstyle "ise" -incremental -o "C:/Users/Microsoft/Documents/ise projekter-filer/oscilloscope/tb_SPI_control_new_isim_beh.exe" -prj "C:/Users/Microsoft/Documents/ise projekter-filer/oscilloscope/tb_SPI_control_new_beh.prj" "work.tb_SPI_control_new" 

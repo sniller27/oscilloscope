@@ -36,7 +36,8 @@ entity SigGenTop is
 			An     : out std_logic_vector(3 downto 0);
 			Cat    : out std_logic_vector(7 downto 0);
 			LD		 : out std_logic;
-         PWMOut : inout std_logic);
+         PWMOut : inout std_logic;
+			LED	:	out std_logic_vector(7 downto 0));
 end SigGenTop;
 
 architecture Behavioral of SigGenTop is
@@ -54,8 +55,7 @@ U4: entity WORK.DivClk
     port map(Reset => BTN3, Clk => Clk, TimeP => 50e3, Clk1 => DispClk);
 
 U1: entity WORK.SigGenControl 
-    port map(Reset => BTN3, Clk => Mclk, MOSI => MOSI, SS => SS, Disp => Disp, Shape => Shape, Ampl => Ampl, Freq => Freq, SigEN=> SigEN);
-
+    port map(Reset => BTN3,CLK => MCLK, SCLK => SCK, MOSI => MOSI, SS => SS, Disp => Disp, Shape => Shape, Ampl => Ampl, Freq => Freq, SigEN=> SigEN, Byte => LED);
 
 U2: entity WORK.SigGenDataPath generic map (PWMinc => "0000001") 
     port map(Reset => BTN3, Clk => Mclk, Shape => Shape(1 downto 0), Ampl => Ampl, Freq => Freq, SigEN=> SigEN, PWMOut => PWMOut);

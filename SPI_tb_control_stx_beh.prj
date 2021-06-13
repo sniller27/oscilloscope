@@ -1,0 +1,2 @@
+vhdl isim_temp "SigGenControl.vhd"
+vhdl isim_temp "SPI_tb_control.vhd"

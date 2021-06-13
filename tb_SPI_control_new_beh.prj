@@ -1,0 +1,2 @@
+vhdl work "SigGenControl.vhd"
+vhdl work "tb_SPI_control_new.vhd"

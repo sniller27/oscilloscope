@@ -40,16 +40,49 @@ Data Sheet report:
 -----------------
 All values displayed in nanoseconds (ns)
 
+Setup/Hold to clock SCK
+------------+------------+------------+------------------+--------+
+            |Max Setup to|Max Hold to |                  | Clock  |
+Source      | clk (edge) | clk (edge) |Internal Clock(s) | Phase  |
+------------+------------+------------+------------------+--------+
+MOSI        |   -0.190(R)|    1.828(R)|SCK_BUFGP         |   0.000|
+------------+------------+------------+------------------+--------+
+
+Clock SCK to Pad
+------------+------------+------------------+--------+
+            | clk (edge) |                  | Clock  |
+Destination |   to PAD   |Internal Clock(s) | Phase  |
+------------+------------+------------------+--------+
+LD          |   15.077(R)|SCK_BUFGP         |   0.000|
+PWMOut      |   15.669(R)|SCK_BUFGP         |   0.000|
+------------+------------+------------------+--------+
+
 Clock to Setup on destination clock Clk
 ---------------+---------+---------+---------+---------+
                | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
 Source Clock   |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
 ---------------+---------+---------+---------+---------+
-Clk            |    8.244|         |         |         |
+Clk            |    7.615|         |         |         |
 ---------------+---------+---------+---------+---------+
 
+Clock to Setup on destination clock SCK
+---------------+---------+---------+---------+---------+
+               | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
+Source Clock   |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
+---------------+---------+---------+---------+---------+
+SCK            |    1.724|         |         |         |
+---------------+---------+---------+---------+---------+
 
-Analysis completed Tue Jun 08 09:54:55 2021 
+Pad to Pad
+---------------+---------------+---------+
+Source Pad     |Destination Pad|  Delay  |
+---------------+---------------+---------+
+SS             |LD             |    9.534|
+SS             |PWMOut         |   10.126|
+---------------+---------------+---------+
+
+
+Analysis completed Fri Jun 11 15:28:59 2021 
 --------------------------------------------------------------------------------
 
 Trace Settings:

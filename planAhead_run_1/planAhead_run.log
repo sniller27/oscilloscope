@@ -1,0 +1,83 @@
+
+****** PlanAhead v14.3 (64-bit)
+  **** Build 209282 by xbuild on Thu Oct 18 20:50:53 MDT 2012
+    ** Copyright 1986-1999, 2001-2012 Xilinx, Inc. All Rights Reserved.
+
+INFO: [Common 17-78] Attempting to get a license: PlanAhead
+INFO: [Common 17-290] Got license for PlanAhead
+INFO: [Common 17-86] Your PlanAhead license expires in -1563 day(s)
+INFO: [Device 21-36] Loading parts and site information from C:/Xilinx/14.3/ISE_DS/PlanAhead/data/parts/arch.xml
+Parsing RTL primitives file [C:/Xilinx/14.3/ISE_DS/PlanAhead/data/parts/xilinx/rtl/prims/rtl_prims.xml]
+Finished parsing RTL primitives file [C:/Xilinx/14.3/ISE_DS/PlanAhead/data/parts/xilinx/rtl/prims/rtl_prims.xml]
+start_gui
+source {C:/Users/Microsoft/Documents/ise projekter-filer/oscilloscope/pa.fromNetlist.tcl}
+# create_project -name oscilloscope -dir "C:/Users/Microsoft/Documents/ise projekter-filer/oscilloscope/planAhead_run_2" -part xc3s100ecp132-4
+# set_property design_mode GateLvl [get_property srcset [current_run -impl]]
+# set_property edif_top_file "C:/Users/Microsoft/Documents/ise projekter-filer/oscilloscope/SigGenTop.ngc" [ get_property srcset [ current_run ] ]
+# add_files -norecurse { {C:/Users/Microsoft/Documents/ise projekter-filer/oscilloscope} {ipcore_dir} }
+# add_files [list {ipcore_dir/SinusLUT.ncf}] -fileset [get_property constrset [current_run]]
+# set_property target_constrs_file "siggentop.ucf" [current_fileset -constrset]
+Adding file 'C:/Users/Microsoft/Documents/ise projekter-filer/oscilloscope/siggentop.ucf' to fileset 'constrs_1'
+# add_files [list {siggentop.ucf}] -fileset [get_property constrset [current_run]]
+# link_design
+Design is defaulting to srcset: sources_1
+Design is defaulting to constrset: constrs_1
+Design is defaulting to project part: xc3s100ecp132-4
+Release 14.3 - ngc2edif P.40xd (nt64)
+Copyright (c) 1995-2012 Xilinx, Inc.  All rights reserved.
+Reading design SigGenTop.ngc ...
+WARNING:NetListWriters:298 - No output is written to SigGenTop.xncf, ignored.
+Processing design ...
+   Preping design's networks ...
+   Preping design's macros ...
+WARNING:NetListWriters:306 - Signal bus Disp<13 : 0> on block SigGenTop is not
+   reconstructed, because there are some missing bus signals.
+WARNING:NetListWriters:306 - Signal bus U1/_mux0000<7 : 0> on block SigGenTop is
+   not reconstructed, because there are some missing bus signals.
+WARNING:NetListWriters:306 - Signal bus U2/Maccum_SigCnt_lut<9 : 0> on block
+   SigGenTop is not reconstructed, because there are some missing bus signals.
+  finished :Prep
+Writing EDIF netlist file SigGenTop.edif ...
+ngc2edif: Total memory usage is 4314352 kilobytes
+
+Parsing EDIF File [./planAhead_run_2/oscilloscope.data/cache/SigGenTop_ngc_e929824c.edif]
+Finished Parsing EDIF File [./planAhead_run_2/oscilloscope.data/cache/SigGenTop_ngc_e929824c.edif]
+Release 14.3 - ngc2edif P.40xd (nt64)
+Copyright (c) 1995-2012 Xilinx, Inc.  All rights reserved.
+Reading design SinusLUT.ngc ...
+WARNING:NetListWriters:298 - No output is written to SinusLUT.xncf, ignored.
+Processing design ...
+   Preping design's networks ...
+   Preping design's macros ...
+  finished :Prep
+Writing EDIF netlist file SinusLUT.edif ...
+ngc2edif: Total memory usage is 4309680 kilobytes
+
+Reading core file 'C:/Users/Microsoft/Documents/ise projekter-filer/oscilloscope/ipcore_dir/SinusLUT.ngc' for (cell view 'SinusLUT', library 'SigGenTop_lib', file 'SigGenTop.ngc')
+Parsing EDIF File [./planAhead_run_2/oscilloscope.data/cache/SinusLUT_ngc_49f6eeaf.edif]
+Finished Parsing EDIF File [./planAhead_run_2/oscilloscope.data/cache/SinusLUT_ngc_49f6eeaf.edif]
+INFO: [Designutils 20-910] Reading macro library C:/Xilinx/14.3/ISE_DS/PlanAhead/data\./parts/xilinx/spartan3e/spartan3e/hd_int_macros.edn
+Parsing EDIF File [C:/Xilinx/14.3/ISE_DS/PlanAhead/data\./parts/xilinx/spartan3e/spartan3e/hd_int_macros.edn]
+Finished Parsing EDIF File [C:/Xilinx/14.3/ISE_DS/PlanAhead/data\./parts/xilinx/spartan3e/spartan3e/hd_int_macros.edn]
+Loading clock regions from C:/Xilinx/14.3/ISE_DS/PlanAhead/data\parts/xilinx/spartan3e/spartan3e/xc3s100e/ClockRegion.xml
+Loading clock buffers from C:/Xilinx/14.3/ISE_DS/PlanAhead/data\parts/xilinx/spartan3e/spartan3e/xc3s100e/ClockBuffers.xml
+Loading package from C:/Xilinx/14.3/ISE_DS/PlanAhead/data\parts/xilinx/spartan3e/spartan3e/xc3s100e/cp132/Package.xml
+Loading io standards from C:/Xilinx/14.3/ISE_DS/PlanAhead/data\./parts/xilinx/spartan3e/IOStandards.xml
+INFO: [Device 21-19] Loading pkg sso from C:/Xilinx/14.3/ISE_DS/PlanAhead/data\parts/xilinx/spartan3e/spartan3e/xc3s100e/cp132/SSORules.xml
+Loading list of drcs for the architecture : C:/Xilinx/14.3/ISE_DS/PlanAhead/data\./parts/xilinx/spartan3e/spartan3e/drc.xml
+INFO: [Timing 38-77] Reading timing library C:/Xilinx/14.3/ISE_DS/PlanAhead/data\parts/xilinx/spartan3e/spartan3e/spartan3e-4.lib.
+INFO: [Timing 38-34] Done reading timing library C:/Xilinx/14.3/ISE_DS/PlanAhead/data\parts/xilinx/spartan3e/spartan3e/spartan3e-4.lib.
+Parsing UCF File [C:/Users/Microsoft/Documents/ise projekter-filer/oscilloscope/ipcore_dir/SinusLUT.ncf]
+Finished Parsing UCF File [C:/Users/Microsoft/Documents/ise projekter-filer/oscilloscope/ipcore_dir/SinusLUT.ncf]
+Parsing UCF File [C:/Users/Microsoft/Documents/ise projekter-filer/oscilloscope/siggentop.ucf]
+WARNING: [Constraints 18-7] Clock terminal SCK is located on a non-clock IO location A3 this can produce sub-optimal results [C:/Users/Microsoft/Documents/ise projekter-filer/oscilloscope/siggentop.ucf:38]
+Finished Parsing UCF File [C:/Users/Microsoft/Documents/ise projekter-filer/oscilloscope/siggentop.ucf]
+INFO: [Project 1-111] Unisim Transformation Summary:
+  A total of 2 instances were transformed.
+  BUFGP => BUFGP (HD_IBUFG, HD_BUFG): 2 instances
+
+Phase 0 | Netlist Checksum: f8d49360
+link_design: Time (s): elapsed = 00:00:08 . Memory (MB): peak = 502.441 ; gain = 81.145
+exit
+INFO: [Common 17-206] Exiting PlanAhead at Fri Jun 11 12:12:06 2021...
+INFO: [Common 17-83] Releasing license: PlanAhead

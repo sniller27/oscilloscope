@@ -24,14 +24,16 @@ use IEEE.STD_LOGIC_UNSIGNED.ALL;
 
 entity SigGenControl is
   Port ( RESET  : in std_logic;
-         CLK    : in std_logic;
-			MOSI    : in std_logic;
-         SS    : in std_logic;
+			CLK	 :	in std_logic;
+			SCLK		:	in std_logic;
+			MOSI   : in std_logic;
+         SS     : in std_logic;
          Disp   : out std_logic_vector(19 downto 0);
          Shape  : inout std_logic_vector(7 downto 0);
          Ampl   : inout std_logic_vector(7 downto 0);
          Freq   : inout std_logic_vector(7 downto 0);
-         SigEn  : out std_logic);
+         SigEn  : out std_logic;
+			Byte	 :	out std_logic_vector(7 downto 0));
 end SigGenControl;
 
 architecture Behavioral of SigGenControl is
@@ -41,55 +43,52 @@ type StateType is (IdleS, AddrS, DataS, ChksumS);
 signal State, NextState: StateType;
 
 -- signaler
-signal AdrEn, DataEn, ShapeEn, AmplEn, FreqEn: std_logic;
+signal AdrEn, DataEn, ShapeEn, AmplEn, FreqEn, SSold, SSpuls: std_logic;
 signal SPIdat, RegVal, Addr, Data: std_logic_vector(7 downto 0);  
 signal DispSel: std_logic_vector(1 downto 0); -- display
+signal sync	:	std_logic_vector(7 downto 0);
 
 begin
 
 -- MOSI Register (skifteregister) - skifter MOSI ind på hver clock til SPIdat hele tiden (data modtages via SPI)
-MOSI_Reg: process (CLK, Reset)
+MOSI_Reg: process (SCLK, Reset)
 begin
 	if (Reset = '1') then SPIdat <= X"00"; -- async reset
-	elsif (CLK'event and CLK = '1') then -- nedadgående flanke (falling edge)
+	elsif (SCLK'event and SCLK = '1') then -- nedadgående flanke (falling edge)
 		SPIdat <= MOSI & SPIdat(7 downto 1); -- skifter til højre
 	end if;
 end process;
 
--- Addresse Register (skifteregister - skifter på Adr-flag efter synkronisering)
+-- Addresse Register (standard register - skifter på Adr-flag efter synkronisering)
 AddrReg: process (CLK, Reset)
 begin
 	if (Reset = '1') then Addr <= X"00"; -- async reset
 	elsif (CLK'event and CLK = '1') then -- nedadgående flanke (falling edge)
 		if (AdrEn = '1') then
-			Addr <= MOSI & Addr(7 downto 1); -- skifter til højre
+			Addr <= SPIdat; -- skifter til højre
 		end if;
 	end if;
 end process;
 
--- Data Register (skifteregister - skifter på Data-flag efter addresse læsning)
+-- Data Register (standard register - skifter på Data-flag efter addresse læsning)
 DataReg: process (CLK, Reset)
 begin
 	if (Reset = '1') then Data <= X"00"; -- async reset
 	elsif (CLK'event and CLK = '1') then -- nedadgående flanke (falling edge)
 		if (DataEn = '1') then
-			Data <= MOSI & Data(7 downto 1); -- skifter til højre
+			Data <= SPIdat; -- skifter til højre
 		end if;
 	end if;
 end process;
-
-
-
-
-
 
 -- ShapeReg (standard register - videregiver data til Shape)
 ShapeReg: process (CLK, Reset)
 begin
 	if (Reset = '1') then Shape <= X"00"; -- async reset
-	elsif (CLK'event and CLK = '0') then -- nedadgående flanke (falling edge)
+	elsif (CLK'event and CLK = '1') then -- nedadgående flanke (falling edge)
 		if (ShapeEn = '1') then
 			Shape <= Data;
+			byte <= Shape;
 		end if;
 	end if;
 end process;
@@ -98,7 +97,7 @@ end process;
 AmplReg: process (CLK, Reset)
 begin
 	if (Reset = '1') then Ampl <= X"00"; -- async reset
-	elsif (CLK'event and CLK = '0') then -- nedadgående flanke (falling edge)
+	elsif (CLK'event and CLK = '1') then -- nedadgående flanke (falling edge)
 		if (AmplEn = '1') then
 			Ampl <= Data;
 		end if;
@@ -109,7 +108,7 @@ end process;
 FreqReg: process (CLK, Reset)
 begin
 	if (Reset = '1') then Freq <= X"00"; -- async reset
-	elsif (CLK'event and CLK = '0') then -- nedadgående flanke (falling edge)
+	elsif (CLK'event and CLK = '1') then -- nedadgående flanke (falling edge)
 		if (FreqEn = '1') then
 			Freq <= Data;
 		end if;
@@ -127,10 +126,12 @@ DispMux: Disp <= X"F1230" when DispSel = "0" else
 StateReg: process (Reset, CLK)
 begin
   if RESET = '1' then State <= IdleS;
-  elsif CLK'event and CLK = '0' then
+  elsif CLK'event and CLK = '1' then
     State <= NextState;
   end if;
 end process;
+
+--Byte <= SPIdat;
 
 -- logik og tilstande (tilstandsmaskine)
 StateDec: process (State, MOSI, SS) --State decoder: next state and output decoder (X er et udefrakommende input, der styrer tilstandsmaskinen)
@@ -139,7 +140,11 @@ begin
 AdrEn <= '0'; -- default value
 DataEn <= '0'; -- default value
 SigEn <= '0'; -- default value
-DispSel <= "00"; -- default value
+ShapeEn <= '0';
+AmplEn <= '0';
+FreqEn <= '0';
+DispSel <= "00"; -- RUN
+--byte <= "00000000";
 
 NextState <= State; -- set state (for at undgå latch?)
 
@@ -147,40 +152,35 @@ case State is
 
 --Sync
 when IdleS =>
+DispSel <= "11"; -- S
+if SSpuls='1' AND SPIdat="01010101" then -- 0x55
 
-if SS='1' AND SPIdat="01010101" then -- 0x55
-	
-	-- start address reading
 	NextState <= AddrS;
 	
 end if;
 
 --Read address
 when AddrS =>
-AdrEn <= '1'; -- enable address reading
-if SS='1' then
-	AdrEn <= '0';
+DispSel <= "10"; -- A
+
+
+if SSpuls='1' then
+
+	AdrEn <= '1'; -- enable address reading
+	
 	-- start data reading
 	NextState <= DataS;
-	 
+	
 end if;
 
 --Read_data
 when DataS =>
-DataEn <= '1'; -- enable data reading
-if SS='1' then
-DataEn <= '0';		
-	-- transfer data to correct address by using standard register (?)
-	if Addr(7 downto 6)="00" then 
-		ShapeEn <= '1';
-		DispSel <= "11";
-	elsif Addr(7 downto 6)="01" then 
-		AmplEn <= '1';
-		DispSel <= "10";
-	elsif Addr(7 downto 6)="10" then 
-		FreqEn <= '1';
-		DispSel <= "01";
-	end if;
+DispSel <= "01"; -- F
+
+if SSpuls='1' then
+
+	DataEn <= '1'; -- enable data reading	
+	
 	
 --	if Addr(7 downto 6)="00" then Shape <= SPIdat; -- eller data
 --	elsif Addr(7 downto 6)="01" then Ampl <= SPIdat; -- eller data
@@ -194,19 +194,27 @@ end if;
 
 --Checksum
 when ChksumS =>
--- stop updating values
-ShapeEn <= '0';
-AmplEn <= '0';
-FreqEn <= '0';
+DispSel <= "00"; -- RUN
+
+if SSpuls = '1' then
 
 RegVal <= "01010101" XOR Addr XOR Data; -- checksum
 
-if SS='1' then
-
 	-- compare checksums
 	if RegVal=SPIdat then
-		SigEn <= '1';
-		NextState <= IdleS;
+			SigEn <= '1';
+			-- transfer data to correct address by using standard register (?)
+		if Addr(1 downto 0)="00" then 
+			ShapeEn <= '1';
+			DispSel <= "11";
+		elsif Addr(1 downto 0)="01" then 
+			AmplEn <= '1';
+			DispSel <= "10";
+		elsif Addr(1 downto 0)="10" then 
+			FreqEn <= '1';
+			DispSel <= "01";
+		end if;
+			NextState <= IdleS;
 	end if;
 	
 end if;
@@ -214,6 +222,18 @@ end if;
 end case;
 
 end process;
+
+-- Flip-Flop
+SSsold: process (CLK)
+begin
+
+	if CLK'event and CLK = '1' then
+		SSold <= SS;
+	end if;
+
+end process;
+
+SSpulser: SSpuls <= SS and (not SSold);
 
 
 end Behavioral;
