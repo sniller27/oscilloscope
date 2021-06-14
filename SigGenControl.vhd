@@ -54,7 +54,7 @@ begin
 MOSI_Reg: process (SCLK, Reset)
 begin
 	if (Reset = '1') then SPIdat <= X"00"; -- async reset
-	elsif (SCLK'event and SCLK = '1') then -- nedadgående flanke (falling edge)
+	elsif (SCLK'event and SCLK = '0') then -- nedadgående flanke (falling edge)
 		SPIdat <= MOSI & SPIdat(7 downto 1); -- skifter til højre
 	end if;
 end process;
@@ -115,12 +115,11 @@ begin
 	end if;
 end process;
 
-
+-- Display
 DispMux: Disp <= X"F1230" when DispSel = "0" else
                  X"4F0" & Freq when DispSel = X"1" else
                  X"4A0" & Ampl when DispSel = X"2" else
                  X"450" & "000000" & Shape(7 downto 6);
-					  
 
 -- next state (tilstandsmaskine)
 StateReg: process (Reset, CLK)
@@ -131,10 +130,8 @@ begin
   end if;
 end process;
 
---Byte <= SPIdat;
-
 -- logik og tilstande (tilstandsmaskine)
-StateDec: process (State, MOSI, SS) --State decoder: next state and output decoder (X er et udefrakommende input, der styrer tilstandsmaskinen)
+StateDec: process (State, MOSI, SSpuls) --State decoder: next state and output decoder (X er et udefrakommende input, der styrer tilstandsmaskinen)
 begin
 
 AdrEn <= '0'; -- default value
@@ -144,7 +141,6 @@ ShapeEn <= '0';
 AmplEn <= '0';
 FreqEn <= '0';
 DispSel <= "00"; -- RUN
---byte <= "00000000";
 
 NextState <= State; -- set state (for at undgå latch?)
 
@@ -154,6 +150,7 @@ case State is
 when IdleS =>
 DispSel <= "11"; -- S
 if SSpuls='1' AND SPIdat="01010101" then -- 0x55
+--if SS='1' then -- 0x55
 
 	NextState <= AddrS;
 	
@@ -162,8 +159,6 @@ end if;
 --Read address
 when AddrS =>
 DispSel <= "10"; -- A
-
-
 if SSpuls='1' then
 
 	AdrEn <= '1'; -- enable address reading
@@ -176,11 +171,9 @@ end if;
 --Read_data
 when DataS =>
 DispSel <= "01"; -- F
-
 if SSpuls='1' then
 
 	DataEn <= '1'; -- enable data reading	
-	
 	
 --	if Addr(7 downto 6)="00" then Shape <= SPIdat; -- eller data
 --	elsif Addr(7 downto 6)="01" then Ampl <= SPIdat; -- eller data
@@ -195,12 +188,11 @@ end if;
 --Checksum
 when ChksumS =>
 DispSel <= "00"; -- RUN
-
 if SSpuls = '1' then
 
 RegVal <= "01010101" XOR Addr XOR Data; -- checksum
-
-	-- compare checksums
+ 
+ 	-- compare checksums
 	if RegVal=SPIdat then
 			SigEn <= '1';
 			-- transfer data to correct address by using standard register (?)
@@ -223,10 +215,10 @@ end case;
 
 end process;
 
--- Flip-Flop
+-- D-Flip-Flop
 SSsold: process (CLK)
 begin
-
+ 
 	if CLK'event and CLK = '1' then
 		SSold <= SS;
 	end if;

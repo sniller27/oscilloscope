@@ -75,7 +75,7 @@ ARCHITECTURE behavior OF tb_SPI_control_new IS
 
    -- Clock period definitions
    constant CLK_period : time := 10 ns;
-   constant SCLK_period : time := 10 ns;
+   constant SCLK_period : time := 250 ns;
  
 BEGIN
  
@@ -116,9 +116,9 @@ BEGIN
    stim_proc: process
    begin		
       -- hold reset state for 100 ns.
-      wait for 100 ns;	
+      --wait for 100 ns;	
 
-      wait for CLK_period*10;
+      --wait for CLK_period*10;
 
       -- insert stimulus here 
 		-- hold reset state for 100 ns.
@@ -126,97 +126,97 @@ BEGIN
 		wait for Clk_period;
 		reset <= '0';
 		wait for Clk_period;
-       
+        
 		--Sync
 		SS <= '1';
-		wait for Clk_period;
+		wait for SCLK_period;
 		SS <= '0';
 		
 		MOSI <= '1';
-		wait for Clk_period;
+		wait for SCLK_period;
 		MOSI <= '0';
-		wait for Clk_period;
+		wait for SCLK_period;
 		MOSI <= '1';
-		wait for Clk_period;
+		wait for SCLK_period;
 		MOSI <= '0';
-		wait for Clk_period;
+		wait for SCLK_period;
 		MOSI <= '1';
-		wait for Clk_period;
+		wait for SCLK_period;
 		MOSI <= '0';
-		wait for Clk_period;
+		wait for SCLK_period;
 		MOSI <= '1';
-		wait for Clk_period;
+		wait for SCLK_period;
 		MOSI <= '0';
-		wait for Clk_period;
+		wait for SCLK_period;
 		
 		--Address
 		SS <= '1';
-		wait for Clk_period;
+		wait for SCLK_period;
 		SS <= '0';
 		
 		MOSI <= '0';
-		wait for Clk_period;
+		wait for SCLK_period;
 		MOSI <= '0';
-		wait for Clk_period;
+		wait for SCLK_period;
 		MOSI <= '0';
-		wait for Clk_period;
+		wait for SCLK_period;
 		MOSI <= '0';
-		wait for Clk_period;
+		wait for SCLK_period;
 		MOSI <= '0';
-		wait for Clk_period;
+		wait for SCLK_period;
 		MOSI <= '0';
-		wait for Clk_period;
+		wait for SCLK_period;
 		MOSI <= '1';
-		wait for Clk_period;
+		wait for SCLK_period;
 		MOSI <= '0';
-		wait for Clk_period;
+		wait for SCLK_period;
 		
 		--Data
 		SS <= '1';
-		wait for Clk_period;
+		wait for SCLK_period;
 		SS <= '0';
 		
 		MOSI <= '0';
-		wait for Clk_period;
+		wait for SCLK_period;
 		MOSI <= '0';
-		wait for Clk_period;
+		wait for SCLK_period;
 		MOSI <= '1';
-		wait for Clk_period;
+		wait for SCLK_period;
 		MOSI <= '1';
-		wait for Clk_period;
+		wait for SCLK_period;
 		MOSI <= '0';
-		wait for Clk_period;
+		wait for SCLK_period;
 		MOSI <= '0';
-		wait for Clk_period;
+		wait for SCLK_period;
 		MOSI <= '0';
-		wait for Clk_period;
+		wait for SCLK_period;
 		MOSI <= '1';
-		wait for Clk_period;
+		wait for SCLK_period;
 		
 		SS <= '1';
-		wait for Clk_period;
+		wait for SCLK_period;
 		SS <= '0';
 		
 		--CRC
 		MOSI <= '1';
-		wait for Clk_period;
+		wait for SCLK_period;
 		MOSI <= '0';
-		wait for Clk_period;
+		wait for SCLK_period;
 		MOSI <= '0';
-		wait for Clk_period;
+		wait for SCLK_period;
 		MOSI <= '1';
-		wait for Clk_period;
+		wait for SCLK_period;
 		MOSI <= '1';
-		wait for Clk_period;
+		wait for SCLK_period;
 		MOSI <= '0';
-		wait for Clk_period;
+		wait for SCLK_period;
 		MOSI <= '0';
-		wait for Clk_period;
+		wait for SCLK_period;
 		MOSI <= '1';
-		wait for Clk_period;
+		wait for SCLK_period;
 		
 		SS <= '1';
-		wait for Clk_period;
+		wait for SCLK_period;
 		SS <= '0';
 
       wait;

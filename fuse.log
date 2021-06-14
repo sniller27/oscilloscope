@@ -14,9 +14,8 @@ Compiling package std_logic_unsigned
 Compiling architecture behavioral of entity SigGenControl [siggencontrol_default]
 Compiling architecture behavior of entity tb_spi_control_new
 Time Resolution for simulation is 1ps.
-Waiting for 2 sub-compilation(s) to finish...
 WARNING:Simulator - Unable to copy libPortabilityNOSH.dll to the simulation executable directory: boost::filesystem::copy_file: Den angivne sti blev ikke fundet, "isim\tb_SPI_control_new_isim_beh.exe.sim\libPortability.dll".
 Compiled 7 VHDL Units
 Built simulation executable C:/Users/Microsoft/Documents/ise projekter-filer/oscilloscope/tb_SPI_control_new_isim_beh.exe
-Fuse Memory Usage: 34476 KB
-Fuse CPU Usage: 468 ms
+Fuse Memory Usage: 34456 KB
+Fuse CPU Usage: 514 ms

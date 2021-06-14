@@ -566,3 +566,4 @@ bitgen -intstyle ise -f SigGenTop.ut SigGenTop.ncd
 bitgen -intstyle ise -f SigGenTop.ut SigGenTop.ncd 
 bitgen -intstyle ise -f SigGenTop.ut SigGenTop.ncd 
 bitgen -intstyle ise -f SigGenTop.ut SigGenTop.ncd 
+xst -intstyle ise -ifn "C:/Users/Microsoft/Documents/ise projekter-filer/oscilloscope/SigGenTop.xst" -ofn "C:/Users/Microsoft/Documents/ise projekter-filer/oscilloscope/SigGenTop.syr" 
