@@ -3,14 +3,14 @@ Copyright (c) 1995-2012 Xilinx, Inc.  All rights reserved.
 --> Parameter TMPDIR set to xst/projnav.tmp
 
 
-Total REAL time to Xst completion: 2.00 secs
-Total CPU time to Xst completion: 2.01 secs
+Total REAL time to Xst completion: 0.00 secs
+Total CPU time to Xst completion: 0.16 secs
  
 --> Parameter xsthdpdir set to xst
 
 
-Total REAL time to Xst completion: 2.00 secs
-Total CPU time to Xst completion: 2.03 secs
+Total REAL time to Xst completion: 0.00 secs
+Total CPU time to Xst completion: 0.16 secs
  
 --> Reading design: SigGenTop.prj
 
@@ -119,7 +119,8 @@ Architecture behavioral of Entity siggendatapath is up to date.
 Compiling vhdl file "C:/Users/Microsoft/Documents/ise projekter-filer/oscilloscope/SevenSeg5.vhd" in Library work.
 Architecture sevenseg_arch of Entity sevenseg5 is up to date.
 Compiling vhdl file "C:/Users/Microsoft/Documents/ise projekter-filer/oscilloscope/SigGenTop.vhd" in Library work.
-Architecture behavioral of Entity siggentop is up to date.
+Entity <siggentop> compiled.
+Entity <siggentop> (Architecture <behavioral>) compiled.
 
 =========================================================================
 *                     Design Hierarchy Analysis                         *
@@ -147,7 +148,8 @@ Entity <DivClk> analyzed. Unit <DivClk> generated.
 
 Analyzing Entity <SigGenControl> in library <work> (Architecture <Behavioral>).
 WARNING:Xst:819 - "C:/Users/Microsoft/Documents/ise projekter-filer/oscilloscope/SigGenControl.vhd" line 134: One or more signals are missing in the process sensitivity list. To enable synthesis of FPGA/CPLD hardware, XST will assume that all necessary signals are present in the sensitivity list. Please note that the result of the synthesis may differ from the initial design specification. The missing signals are:
-   <SSpuls>, <SPIdat>, <Addr>, <Data>
+   <SPIdat>, <Addr>, <Data>
+INFO:Xst:2679 - Register <SigEn> in unit <SigGenControl> has a constant value of 1 during circuit operation. The register is replaced by logic.
 Entity <SigGenControl> analyzed. Unit <SigGenControl> generated.
 
 Analyzing generic Entity <SigGenDatapath> in library <work> (Architecture <Behavioral>).
@@ -187,7 +189,7 @@ WARNING:Xst:1780 - Signal <sync> is never used or assigned. This unconnected sig
     -----------------------------------------------------------------------
     | States             | 4                                              |
     | Transitions        | 10                                             |
-    | Inputs             | 4                                              |
+    | Inputs             | 3                                              |
     | Outputs            | 4                                              |
     | Clock              | CLK                       (rising_edge)        |
     | Reset              | RESET                     (positive)           |
@@ -414,19 +416,19 @@ Design Statistics
 # IOs                              : 27
 
 Cell Usage :
-# BELS                             : 578
+# BELS                             : 575
 #      GND                         : 2
 #      INV                         : 6
 #      LUT1                        : 5
-#      LUT2                        : 51
-#      LUT3                        : 114
-#      LUT3_D                      : 1
+#      LUT2                        : 50
+#      LUT3                        : 113
+#      LUT3_L                      : 1
 #      LUT4                        : 113
 #      LUT4_D                      : 1
 #      LUT4_L                      : 1
 #      MULT_AND                    : 9
 #      MUXCY                       : 135
-#      MUXF5                       : 22
+#      MUXF5                       : 21
 #      VCC                         : 2
 #      XORCY                       : 116
 # FlipFlops/Latches                : 153
@@ -452,9 +454,9 @@ Device utilization summary:
 
 Selected Device : 3s100ecp132-4 
 
- Number of Slices:                      159  out of    960    16%  
+ Number of Slices:                      158  out of    960    16%  
  Number of Slice Flip Flops:            152  out of   1920     7%  
- Number of 4 input LUTs:                292  out of   1920    15%  
+ Number of 4 input LUTs:                290  out of   1920    15%  
  Number of IOs:                          27
  Number of bonded IOBs:                  27  out of     83    32%  
     IOB Flip Flops:                       1
@@ -507,9 +509,9 @@ Timing Summary:
 Speed Grade: -4
 
    Minimum period: 7.940ns (Maximum Frequency: 125.950MHz)
-   Minimum input arrival time before clock: 10.502ns
-   Maximum output required time after clock: 40.134ns
-   Maximum combinational path delay: 7.849ns
+   Minimum input arrival time before clock: 10.252ns
+   Maximum output required time after clock: 39.006ns
+   Maximum combinational path delay: No path found
 
 Timing Detail:
 --------------
@@ -588,7 +590,7 @@ Delay:               5.316ns (Levels of Logic = 4)
      FDC:C->Q             15   0.591   1.192  U3/DispCount_0 (U3/DispCount_0)
      LUT3:I0->O            1   0.704   0.000  U3/Mmux_DataN_4 (U3/Mmux_DataN_4)
      MUXF5:I0->O          14   0.321   1.175  U3/Mmux_DataN_2_f5 (U3/DataN<0>)
-     LUT4:I0->O            1   0.704   0.000  U3/CatInt<2>_F (N72)
+     LUT4:I0->O            1   0.704   0.000  U3/CatInt<2>_F (N69)
      MUXF5:I0->O           1   0.321   0.000  U3/CatInt<2> (U3/CatInt<2>)
      FDC:D                     0.308          U3/cat_2
     ----------------------------------------
@@ -597,27 +599,28 @@ Delay:               5.316ns (Levels of Logic = 4)
 
 =========================================================================
 Timing constraint: Default period analysis for Clock 'U0/Clk1_D1'
-  Clock period: 6.846ns (frequency: 146.071MHz)
-  Total number of paths / destination ports: 577 / 138
+  Clock period: 7.063ns (frequency: 141.583MHz)
+  Total number of paths / destination ports: 585 / 138
 -------------------------------------------------------------------------
-Delay:               6.846ns (Levels of Logic = 3)
-  Source:            U1/State_FSM_FFd1 (FF)
+Delay:               7.063ns (Levels of Logic = 4)
+  Source:            U1/SSold (FF)
   Destination:       U1/Byte_7 (FF)
   Source Clock:      U0/Clk1_D1 rising
   Destination Clock: U0/Clk1_D1 rising
 
-  Data Path: U1/State_FSM_FFd1 to U1/Byte_7
+  Data Path: U1/SSold to U1/Byte_7
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     FDC:C->Q              9   0.591   0.995  U1/State_FSM_FFd1 (U1/State_FSM_FFd1)
-     LUT2:I0->O           11   0.704   0.937  U1/State_FSM_Out01 (U1/State_cmp_eq0002)
+     FD:C->Q               5   0.591   0.668  U1/SSold (U1/SSold)
+     LUT3_L:I2->LO         1   0.704   0.104  U1/DispSel<0>1151_SW0 (N65)
+     LUT4:I3->O            6   0.704   0.673  U1/DispSel<0>1151 (U1/N0)
      LUT4:I3->O            9   0.704   0.899  U1/ShapeEn1 (U1/ShapeEn)
      LUT2:I1->O            8   0.704   0.757  U1/Byte_and00001 (U1/Byte_and0000)
      FDE:CE                    0.555          U1/Byte_0
     ----------------------------------------
-    Total                      6.846ns (3.258ns logic, 3.588ns route)
-                                       (47.6% logic, 52.4% route)
+    Total                      7.063ns (3.962ns logic, 3.101ns route)
+                                       (56.1% logic, 43.9% route)
 
 =========================================================================
 Timing constraint: Default period analysis for Clock 'SCK'
@@ -644,34 +647,34 @@ Delay:               1.532ns (Levels of Logic = 0)
 Timing constraint: Default OFFSET IN BEFORE for Clock 'U4/Clk1_D'
   Total number of paths / destination ports: 365 / 7
 -------------------------------------------------------------------------
-Offset:              10.502ns (Levels of Logic = 9)
+Offset:              10.252ns (Levels of Logic = 9)
   Source:            SS (PAD)
-  Destination:       U3/cat_4 (FF)
+  Destination:       U3/cat_6 (FF)
   Destination Clock: U4/Clk1_D rising
 
-  Data Path: SS to U3/cat_4
+  Data Path: SS to U3/cat_6
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     IBUF:I->O             8   1.218   0.836  SS_IBUF (SS_IBUF)
-     LUT3_D:I1->O          5   0.704   0.808  U1/DispSel<1>11 (U1/N7)
-     LUT4:I0->O           14   0.704   1.175  U1/DispSel<1>1 (U1/DispSel<1>)
-     LUT4:I0->O            1   0.704   0.000  U1/Disp<1>1 (U1/Disp<1>)
-     MUXF5:I1->O           1   0.321   0.499  U1/Disp<1>_f5 (Disp<1>)
-     LUT3:I1->O            1   0.704   0.000  U3/Mmux_DataN_41 (U3/Mmux_DataN_41)
-     MUXF5:I0->O          14   0.321   1.175  U3/Mmux_DataN_2_f5_0 (U3/DataN<1>)
-     LUT3:I0->O            1   0.704   0.000  U3/CatInt<4>_G (N83)
-     MUXF5:I1->O           1   0.321   0.000  U3/CatInt<4> (U3/CatInt<4>)
-     FDC:D                     0.308          U3/cat_4
+     IBUF:I->O             6   1.218   0.704  SS_IBUF (SS_IBUF)
+     LUT4:I2->O            6   0.704   0.673  U1/DispSel<0>1151 (U1/N0)
+     LUT4:I3->O           15   0.704   1.192  U1/DispSel<0>2 (Disp<14>)
+     LUT4:I0->O            1   0.704   0.000  U1/Disp<0>1 (U1/Disp<0>)
+     MUXF5:I1->O           1   0.321   0.499  U1/Disp<0>_f5 (Disp<0>)
+     LUT3:I1->O            1   0.704   0.000  U3/Mmux_DataN_4 (U3/Mmux_DataN_4)
+     MUXF5:I0->O          14   0.321   1.175  U3/Mmux_DataN_2_f5 (U3/DataN<0>)
+     LUT4:I0->O            1   0.704   0.000  U3/CatInt<2>_F (N69)
+     MUXF5:I0->O           1   0.321   0.000  U3/CatInt<2> (U3/CatInt<2>)
+     FDC:D                     0.308          U3/cat_2
     ----------------------------------------
-    Total                     10.502ns (6.009ns logic, 4.493ns route)
-                                       (57.2% logic, 42.8% route)
+    Total                     10.252ns (6.009ns logic, 4.243ns route)
+                                       (58.6% logic, 41.4% route)
 
 =========================================================================
 Timing constraint: Default OFFSET IN BEFORE for Clock 'U1/State_cmp_eq0002'
   Total number of paths / destination ports: 8 / 8
 -------------------------------------------------------------------------
-Offset:              4.166ns (Levels of Logic = 2)
+Offset:              4.141ns (Levels of Logic = 2)
   Source:            SS (PAD)
   Destination:       U1/RegVal_7 (LATCH)
   Destination Clock: U1/State_cmp_eq0002 falling
@@ -680,18 +683,18 @@ Offset:              4.166ns (Levels of Logic = 2)
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     IBUF:I->O             8   1.218   0.932  SS_IBUF (SS_IBUF)
-     LUT2:I0->O            8   0.704   0.757  U1/SSpuls1 (U1/SSpuls)
+     IBUF:I->O             6   1.218   0.844  SS_IBUF (SS_IBUF)
+     LUT2:I0->O            9   0.704   0.820  U1/SSpuls1 (U1/SSpuls)
      LDE:GE                    0.555          U1/RegVal_7
     ----------------------------------------
-    Total                      4.166ns (2.477ns logic, 1.689ns route)
-                                       (59.5% logic, 40.5% route)
+    Total                      4.141ns (2.477ns logic, 1.664ns route)
+                                       (59.8% logic, 40.2% route)
 
 =========================================================================
 Timing constraint: Default OFFSET IN BEFORE for Clock 'U0/Clk1_D1'
   Total number of paths / destination ports: 60 / 51
 -------------------------------------------------------------------------
-Offset:              7.045ns (Levels of Logic = 4)
+Offset:              6.918ns (Levels of Logic = 4)
   Source:            SS (PAD)
   Destination:       U1/Byte_7 (FF)
   Destination Clock: U0/Clk1_D1 rising
@@ -700,14 +703,14 @@ Offset:              7.045ns (Levels of Logic = 4)
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     IBUF:I->O             8   1.218   0.836  SS_IBUF (SS_IBUF)
-     LUT3_D:I1->O          5   0.704   0.668  U1/DispSel<1>11 (U1/N7)
-     LUT4:I2->O            9   0.704   0.899  U1/ShapeEn1 (U1/ShapeEn)
+     IBUF:I->O             6   1.218   0.704  SS_IBUF (SS_IBUF)
+     LUT4:I2->O            6   0.704   0.673  U1/DispSel<0>1151 (U1/N0)
+     LUT4:I3->O            9   0.704   0.899  U1/ShapeEn1 (U1/ShapeEn)
      LUT2:I1->O            8   0.704   0.757  U1/Byte_and00001 (U1/Byte_and0000)
      FDE:CE                    0.555          U1/Byte_0
     ----------------------------------------
-    Total                      7.045ns (3.885ns logic, 3.160ns route)
-                                       (55.1% logic, 44.9% route)
+    Total                      6.918ns (3.885ns logic, 3.033ns route)
+                                       (56.2% logic, 43.8% route)
 
 =========================================================================
 Timing constraint: Default OFFSET IN BEFORE for Clock 'SCK'
@@ -730,9 +733,9 @@ Offset:              1.946ns (Levels of Logic = 1)
 
 =========================================================================
 Timing constraint: Default OFFSET OUT AFTER for Clock 'U0/Clk1_D1'
-  Total number of paths / destination ports: 1183772320 / 10
+  Total number of paths / destination ports: 1183772314 / 10
 -------------------------------------------------------------------------
-Offset:              40.134ns (Levels of Logic = 40)
+Offset:              39.006ns (Levels of Logic = 39)
   Source:            U2/SinusDec/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/s3_init.ram/dpram.dp4x4.ram (RAM)
   Destination:       PWMOut (PAD)
   Source Clock:      U0/Clk1_D1 rising
@@ -779,58 +782,11 @@ Offset:              40.134ns (Levels of Logic = 40)
      LUT4:I1->O            1   0.704   0.595  U2/MulC_mux0007<14>1 (U2/SigAmpl<5>)
      LUT2:I0->O            1   0.704   0.000  U2/Mcompar_PWM_cmp_le0000_lut<5> (U2/Mcompar_PWM_cmp_le0000_lut<5>)
      MUXCY:S->O            1   0.864   0.424  U2/Mcompar_PWM_cmp_le0000_cy<5> (U2/Mcompar_PWM_cmp_le0000_cy<5>)
-     LUT4:I3->O            1   0.704   0.424  U2/Mcompar_PWM_cmp_le0000_cy<6> (U2/PWM)
-     LUT4:I3->O            2   0.704   0.447  U2/PWMOut1 (LD_OBUF)
+     LUT4:I3->O            2   0.704   0.447  U2/Mcompar_PWM_cmp_le0000_cy<6> (LD_OBUF)
      OBUF:I->O                 3.272          PWMOut_OBUF (PWMOut)
     ----------------------------------------
-    Total                     40.134ns (29.275ns logic, 10.859ns route)
-                                       (72.9% logic, 27.1% route)
-
-=========================================================================
-Timing constraint: Default OFFSET OUT AFTER for Clock 'U1/State_cmp_eq0002'
-  Total number of paths / destination ports: 16 / 2
--------------------------------------------------------------------------
-Offset:              9.691ns (Levels of Logic = 5)
-  Source:            U1/RegVal_3 (LATCH)
-  Destination:       PWMOut (PAD)
-  Source Clock:      U1/State_cmp_eq0002 falling
-
-  Data Path: U1/RegVal_3 to PWMOut
-                                Gate     Net
-    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
-    ----------------------------------------  ------------
-     LDE:G->Q              1   0.676   0.595  U1/RegVal_3 (U1/RegVal_3)
-     LUT4:I0->O            1   0.704   0.595  U1/State_cmp_eq0001826 (U1/State_cmp_eq0001826)
-     LUT4:I0->O            2   0.704   0.622  U1/State_cmp_eq00018136 (U1/State_cmp_eq0001)
-     LUT3_D:I0->O          5   0.704   0.668  U1/DispSel<1>11 (U1/N7)
-     LUT4:I2->O            2   0.704   0.447  U2/PWMOut1 (LD_OBUF)
-     OBUF:I->O                 3.272          PWMOut_OBUF (PWMOut)
-    ----------------------------------------
-    Total                      9.691ns (6.764ns logic, 2.927ns route)
-                                       (69.8% logic, 30.2% route)
-
-=========================================================================
-Timing constraint: Default OFFSET OUT AFTER for Clock 'SCK'
-  Total number of paths / destination ports: 16 / 2
--------------------------------------------------------------------------
-Offset:              9.723ns (Levels of Logic = 5)
-  Source:            U1/SPIdat_3 (FF)
-  Destination:       PWMOut (PAD)
-  Source Clock:      SCK falling
-
-  Data Path: U1/SPIdat_3 to PWMOut
-                                Gate     Net
-    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
-    ----------------------------------------  ------------
-     FDC_1:C->Q            5   0.591   0.712  U1/SPIdat_3 (U1/SPIdat_3)
-     LUT4:I1->O            1   0.704   0.595  U1/State_cmp_eq0001826 (U1/State_cmp_eq0001826)
-     LUT4:I0->O            2   0.704   0.622  U1/State_cmp_eq00018136 (U1/State_cmp_eq0001)
-     LUT3_D:I0->O          5   0.704   0.668  U1/DispSel<1>11 (U1/N7)
-     LUT4:I2->O            2   0.704   0.447  U2/PWMOut1 (LD_OBUF)
-     OBUF:I->O                 3.272          PWMOut_OBUF (PWMOut)
-    ----------------------------------------
-    Total                      9.723ns (6.679ns logic, 3.044ns route)
-                                       (68.7% logic, 31.3% route)
+    Total                     39.006ns (28.571ns logic, 10.435ns route)
+                                       (73.2% logic, 26.8% route)
 
 =========================================================================
 Timing constraint: Default OFFSET OUT AFTER for Clock 'U4/Clk1_D'
@@ -852,36 +808,16 @@ Offset:              4.283ns (Levels of Logic = 1)
                                        (90.2% logic, 9.8% route)
 
 =========================================================================
-Timing constraint: Default path analysis
-  Total number of paths / destination ports: 2 / 2
--------------------------------------------------------------------------
-Delay:               7.849ns (Levels of Logic = 4)
-  Source:            SS (PAD)
-  Destination:       PWMOut (PAD)
-
-  Data Path: SS to PWMOut
-                                Gate     Net
-    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
-    ----------------------------------------  ------------
-     IBUF:I->O             8   1.218   0.836  SS_IBUF (SS_IBUF)
-     LUT3_D:I1->O          5   0.704   0.668  U1/DispSel<1>11 (U1/N7)
-     LUT4:I2->O            2   0.704   0.447  U2/PWMOut1 (LD_OBUF)
-     OBUF:I->O                 3.272          PWMOut_OBUF (PWMOut)
-    ----------------------------------------
-    Total                      7.849ns (5.898ns logic, 1.951ns route)
-                                       (75.1% logic, 24.9% route)
-
-=========================================================================
 
 
-Total REAL time to Xst completion: 14.00 secs
-Total CPU time to Xst completion: 13.99 secs
+Total REAL time to Xst completion: 9.00 secs
+Total CPU time to Xst completion: 9.13 secs
  
 --> 
 
-Total memory usage is 4526092 kilobytes
+Total memory usage is 4526128 kilobytes
 
 Number of errors   :    0 (   0 filtered)
 Number of warnings :    4 (   0 filtered)
-Number of infos    :    1 (   0 filtered)
+Number of infos    :    2 (   0 filtered)
 

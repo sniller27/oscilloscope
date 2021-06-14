@@ -136,7 +136,7 @@ begin
 
 AdrEn <= '0'; -- default value
 DataEn <= '0'; -- default value
-SigEn <= '0'; -- default value
+--SigEn <= '0'; -- default value
 ShapeEn <= '0';
 AmplEn <= '0';
 FreqEn <= '0';

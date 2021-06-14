@@ -47,7 +47,7 @@ NET "LED<7>"  LOC = "G1"  ;
 
 NET "SS" LOC = "B2"; # SS
 NET "SCK" LOC = "A3"; # SCK
-NET "SCK" CLOCK_DEDICATED_ROUTE = FALSE; # SCK
+NET "SCK" CLOCK_DEDICATED_ROUTE = FALSE; # SCK (SCK propagerer igennem impedans som et rigtigt signal?)
 NET "PWMOut" LOC = "J3"; # PWM
 NET "MOSI" LOC = "B5"; # MOSI
 
