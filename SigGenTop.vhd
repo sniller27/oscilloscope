@@ -28,7 +28,8 @@ use IEEE.STD_LOGIC_UNSIGNED.ALL;
 --use UNISIM.VComponents.all;
 
 entity SigGenTop is
-  Port ( BTN3   : in std_logic;	
+  Port ( BTN3   : in std_logic;
+			BTN1		:	in std_logic;
          Clk    : in std_logic;
 			SCK    : in std_logic;
          MOSI   : in std_logic;

@@ -3,14 +3,14 @@ Copyright (c) 1995-2012 Xilinx, Inc.  All rights reserved.
 --> Parameter TMPDIR set to xst/projnav.tmp
 
 
-Total REAL time to Xst completion: 1.00 secs
-Total CPU time to Xst completion: 0.15 secs
+Total REAL time to Xst completion: 0.00 secs
+Total CPU time to Xst completion: 0.14 secs
  
 --> Parameter xsthdpdir set to xst
 
 
-Total REAL time to Xst completion: 1.00 secs
-Total CPU time to Xst completion: 0.15 secs
+Total REAL time to Xst completion: 0.00 secs
+Total CPU time to Xst completion: 0.14 secs
  
 --> Reading design: SigGenTop.prj
 
@@ -197,6 +197,7 @@ WARNING:Xst:1780 - Signal <sync> is never used or assigned. This unconnected sig
     | Encoding           | automatic                                      |
     | Implementation     | LUT                                            |
     -----------------------------------------------------------------------
+WARNING:Xst:737 - Found 2-bit latch for signal <DispSel>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
 WARNING:Xst:737 - Found 8-bit latch for signal <RegVal>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
     Found 8-bit register for signal <Freq>.
     Found 8-bit register for signal <Shape>.
@@ -205,17 +206,17 @@ WARNING:Xst:737 - Found 8-bit latch for signal <RegVal>. Latches may be generate
     Found 8-bit register for signal <Byte>.
     Found 8-bit register for signal <Addr>.
     Found 8-bit register for signal <Data>.
-    Found 1-bit xor2 for signal <RegVal$xor0000> created at line 206.
-    Found 1-bit xor2 for signal <RegVal$xor0002> created at line 206.
-    Found 1-bit xor2 for signal <RegVal$xor0004> created at line 206.
-    Found 1-bit xor2 for signal <RegVal$xor0006> created at line 206.
-    Found 1-bit xor2 for signal <RegVal$xor0008> created at line 206.
-    Found 1-bit xor2 for signal <RegVal$xor0009> created at line 206.
-    Found 1-bit xor2 for signal <RegVal$xor0010> created at line 206.
-    Found 1-bit xor2 for signal <RegVal$xor0011> created at line 206.
+    Found 1-bit xor2 for signal <RegVal$xor0000> created at line 203.
+    Found 1-bit xor2 for signal <RegVal$xor0002> created at line 203.
+    Found 1-bit xor2 for signal <RegVal$xor0004> created at line 203.
+    Found 1-bit xor2 for signal <RegVal$xor0006> created at line 203.
+    Found 1-bit xor2 for signal <RegVal$xor0008> created at line 203.
+    Found 1-bit xor2 for signal <RegVal$xor0009> created at line 203.
+    Found 1-bit xor2 for signal <RegVal$xor0010> created at line 203.
+    Found 1-bit xor2 for signal <RegVal$xor0011> created at line 203.
     Found 8-bit register for signal <SPIdat>.
     Found 1-bit register for signal <SSold>.
-    Found 8-bit comparator equal for signal <State$cmp_eq0001> created at line 209.
+    Found 8-bit comparator equal for signal <State$cmp_eq0001> created at line 206.
     Summary:
 	inferred   1 Finite State Machine(s).
 	inferred  58 D-type flip-flop(s).
@@ -268,6 +269,7 @@ Unit <SigGenDatapath> synthesized.
 
 Synthesizing Unit <SigGenTop>.
     Related source file is "C:/Users/Microsoft/Documents/ise projekter-filer/oscilloscope/SigGenTop.vhd".
+WARNING:Xst:647 - Input <BTN1> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
 Unit <SigGenTop> synthesized.
 
 
@@ -290,7 +292,8 @@ Macro Statistics
  1-bit register                                        : 4
  4-bit register                                        : 1
  8-bit register                                        : 9
-# Latches                                              : 1
+# Latches                                              : 2
+ 2-bit latch                                           : 1
  8-bit latch                                           : 1
 # Comparators                                          : 6
  12-bit comparator less                                : 1
@@ -344,7 +347,8 @@ Macro Statistics
  12-bit up accumulator                                 : 1
 # Registers                                            : 80
  Flip-Flops                                            : 80
-# Latches                                              : 1
+# Latches                                              : 2
+ 2-bit latch                                           : 1
  8-bit latch                                           : 1
 # Comparators                                          : 6
  12-bit comparator less                                : 1
@@ -377,7 +381,7 @@ Optimizing unit <SigGenControl> ...
 
 Mapping all equations...
 Building and optimizing final netlist ...
-Found area constraint ratio of 100 (+ 5) on block SigGenTop, actual ratio is 19.
+Found area constraint ratio of 100 (+ 5) on block SigGenTop, actual ratio is 18.
 
 Final Macro Processing ...
 
@@ -412,32 +416,31 @@ Optimization Goal                  : Speed
 Keep Hierarchy                     : No
 
 Design Statistics
-# IOs                              : 27
+# IOs                              : 28
 
 Cell Usage :
-# BELS                             : 594
+# BELS                             : 590
 #      GND                         : 2
 #      INV                         : 6
 #      LUT1                        : 5
-#      LUT2                        : 53
-#      LUT2_D                      : 2
-#      LUT3                        : 115
-#      LUT4                        : 122
+#      LUT2                        : 49
+#      LUT3                        : 114
+#      LUT4                        : 120
 #      LUT4_D                      : 3
 #      LUT4_L                      : 1
 #      MULT_AND                    : 9
 #      MUXCY                       : 135
-#      MUXF5                       : 23
+#      MUXF5                       : 28
 #      VCC                         : 2
 #      XORCY                       : 116
-# FlipFlops/Latches                : 154
+# FlipFlops/Latches                : 156
 #      FD                          : 1
 #      FDC                         : 72
 #      FDC_1                       : 8
 #      FDCE                        : 55
 #      FDE                         : 8
 #      FDP                         : 2
-#      LDE                         : 8
+#      LDE                         : 10
 # RAMS                             : 2
 #      RAMB16_S4_S4                : 2
 # Clock Buffers                    : 3
@@ -453,10 +456,10 @@ Device utilization summary:
 
 Selected Device : 3s100ecp132-4 
 
- Number of Slices:                      167  out of    960    17%  
- Number of Slice Flip Flops:            153  out of   1920     7%  
- Number of 4 input LUTs:                307  out of   1920    15%  
- Number of IOs:                          27
+ Number of Slices:                      162  out of    960    16%  
+ Number of Slice Flip Flops:            155  out of   1920     8%  
+ Number of 4 input LUTs:                298  out of   1920    15%  
+ Number of IOs:                          28
  Number of bonded IOBs:                  27  out of     83    32%  
     IOB Flip Flops:                       1
  Number of BRAMs:                         2  out of      4    50%  
@@ -480,16 +483,16 @@ NOTE: THESE TIMING NUMBERS ARE ONLY A SYNTHESIS ESTIMATE.
 
 Clock Information:
 ------------------
------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+-------+
-Clock Signal                       | Clock buffer(FF name)                                                                                                           | Load  |
------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+-------+
-Clk                                | BUFGP                                                                                                                           | 52    |
-U4/Clk1_D                          | NONE(U3/DispCount_1)                                                                                                            | 14    |
-U0/Clk1_D1                         | BUFG                                                                                                                            | 74    |
-U2/SinusDec/N1                     | NONE(U2/SinusDec/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/s3_init.ram/dpram.dp4x4.ram)| 2     |
-U1/State_cmp_eq0002(U1/Disp<4>21:O)| NONE(*)(U1/RegVal_7)                                                                                                            | 8     |
-SCK                                | BUFGP                                                                                                                           | 8     |
------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+-------+
+-----------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+-------+
+Clock Signal                             | Clock buffer(FF name)                                                                                                           | Load  |
+-----------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+-------+
+Clk                                      | BUFGP                                                                                                                           | 52    |
+U4/Clk1_D                                | NONE(U3/DispCount_1)                                                                                                            | 14    |
+U0/Clk1_D1                               | BUFG                                                                                                                            | 74    |
+U2/SinusDec/N1                           | NONE(U2/SinusDec/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/s3_init.ram/dpram.dp4x4.ram)| 2     |
+U1/State_cmp_eq0002(U1/State_FSM_Out01:O)| NONE(*)(U1/RegVal_7)                                                                                                            | 10    |
+SCK                                      | BUFGP                                                                                                                           | 8     |
+-----------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+-------+
 (*) This 1 clock signal(s) are generated by combinatorial logic,
 and XST is not able to identify which are the primary clock signals.
 Please use the CLOCK_SIGNAL constraint to specify the clock signal(s) generated by combinatorial logic.
@@ -508,8 +511,8 @@ Timing Summary:
 Speed Grade: -4
 
    Minimum period: 7.940ns (Maximum Frequency: 125.950MHz)
-   Minimum input arrival time before clock: 10.443ns
-   Maximum output required time after clock: 39.354ns
+   Minimum input arrival time before clock: 7.037ns
+   Maximum output required time after clock: 39.429ns
    Maximum combinational path delay: No path found
 
 Timing Detail:
@@ -573,10 +576,10 @@ Delay:               7.940ns (Levels of Logic = 34)
 
 =========================================================================
 Timing constraint: Default period analysis for Clock 'U4/Clk1_D'
-  Clock period: 5.316ns (frequency: 188.111MHz)
-  Total number of paths / destination ports: 180 / 13
+  Clock period: 5.299ns (frequency: 188.715MHz)
+  Total number of paths / destination ports: 182 / 13
 -------------------------------------------------------------------------
-Delay:               5.316ns (Levels of Logic = 4)
+Delay:               5.299ns (Levels of Logic = 4)
   Source:            U3/DispCount_0 (FF)
   Destination:       U3/cat_6 (FF)
   Source Clock:      U4/Clk1_D rising
@@ -587,38 +590,62 @@ Delay:               5.316ns (Levels of Logic = 4)
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
      FDC:C->Q             15   0.591   1.192  U3/DispCount_0 (U3/DispCount_0)
-     LUT3:I0->O            1   0.704   0.000  U3/Mmux_DataN_33 (U3/Mmux_DataN_33)
-     MUXF5:I1->O          14   0.321   1.175  U3/Mmux_DataN_2_f5_2 (U3/DataN<3>)
-     LUT4:I0->O            1   0.704   0.000  U3/CatInt<0>_F (N87)
-     MUXF5:I0->O           1   0.321   0.000  U3/CatInt<0> (U3/CatInt<0>)
-     FDC:D                     0.308          U3/cat_0
+     LUT3:I0->O            1   0.704   0.000  U3/Mmux_DataN_32 (U3/Mmux_DataN_32)
+     MUXF5:I1->O          13   0.321   1.158  U3/Mmux_DataN_2_f5_1 (U3/DataN<2>)
+     LUT4:I0->O            1   0.704   0.000  U3/CatInt<6>_F (N81)
+     MUXF5:I0->O           1   0.321   0.000  U3/CatInt<6> (U3/CatInt<6>)
+     FDC:D                     0.308          U3/cat_6
     ----------------------------------------
-    Total                      5.316ns (2.949ns logic, 2.367ns route)
-                                       (55.5% logic, 44.5% route)
+    Total                      5.299ns (2.949ns logic, 2.350ns route)
+                                       (55.7% logic, 44.3% route)
 
 =========================================================================
 Timing constraint: Default period analysis for Clock 'U0/Clk1_D1'
-  Clock period: 6.188ns (frequency: 161.603MHz)
-  Total number of paths / destination ports: 592 / 140
+  Clock period: 6.268ns (frequency: 159.541MHz)
+  Total number of paths / destination ports: 590 / 140
 -------------------------------------------------------------------------
-Delay:               6.188ns (Levels of Logic = 3)
+Delay:               6.268ns (Levels of Logic = 3)
   Source:            U1/SSold (FF)
-  Destination:       U1/Freq_7 (FF)
+  Destination:       U1/Ampl_7 (FF)
   Source Clock:      U0/Clk1_D1 rising
   Destination Clock: U0/Clk1_D1 rising
 
-  Data Path: U1/SSold to U1/Freq_7
+  Data Path: U1/SSold to U1/Ampl_7
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     FD:C->Q               5   0.591   0.637  U1/SSold (U1/SSold)
-     LUT4_D:I3->O          5   0.704   0.712  U1/Disp<9>1149 (U1/Disp<9>1149)
-     LUT2_D:I1->O          9   0.704   0.824  U1/Disp<9>1162 (U1/N1)
-     LUT4:I3->O            8   0.704   0.757  U1/FreqEn1 (U1/FreqEn)
-     FDCE:CE                   0.555          U1/Freq_0
+     FD:C->Q               4   0.591   0.666  U1/SSold (U1/SSold)
+     LUT2:I1->O           12   0.704   0.965  U1/SSpuls1 (U1/SSpuls)
+     LUT4_D:I3->O          4   0.704   0.622  U1/AmplEn11 (U1/N0)
+     LUT3:I2->O            8   0.704   0.757  U1/AmplEn2 (U1/AmplEn)
+     FDCE:CE                   0.555          U1/Ampl_0
     ----------------------------------------
-    Total                      6.188ns (3.258ns logic, 2.930ns route)
-                                       (52.7% logic, 47.3% route)
+    Total                      6.268ns (3.258ns logic, 3.010ns route)
+                                       (52.0% logic, 48.0% route)
+
+=========================================================================
+Timing constraint: Default period analysis for Clock 'U1/State_cmp_eq0002'
+  Clock period: 4.852ns (frequency: 206.101MHz)
+  Total number of paths / destination ports: 18 / 2
+-------------------------------------------------------------------------
+Delay:               4.852ns (Levels of Logic = 3)
+  Source:            U1/RegVal_3 (LATCH)
+  Destination:       U1/DispSel_1 (LATCH)
+  Source Clock:      U1/State_cmp_eq0002 falling
+  Destination Clock: U1/State_cmp_eq0002 falling
+
+  Data Path: U1/RegVal_3 to U1/DispSel_1
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     LDE:G->Q              1   0.676   0.595  U1/RegVal_3 (U1/RegVal_3)
+     LUT4:I0->O            1   0.704   0.595  U1/State_cmp_eq0001826 (U1/State_cmp_eq0001826)
+     LUT4_D:I0->O          3   0.704   0.566  U1/State_cmp_eq00018136 (U1/State_cmp_eq0001)
+     LUT4:I2->O            1   0.704   0.000  U1/DispSel_mux0004<0>1 (U1/DispSel_mux0004<0>)
+     LDE:D                     0.308          U1/DispSel_1
+    ----------------------------------------
+    Total                      4.852ns (3.096ns logic, 1.756ns route)
+                                       (63.8% logic, 36.2% route)
 
 =========================================================================
 Timing constraint: Default period analysis for Clock 'SCK'
@@ -642,37 +669,10 @@ Delay:               1.532ns (Levels of Logic = 0)
                                        (58.7% logic, 41.3% route)
 
 =========================================================================
-Timing constraint: Default OFFSET IN BEFORE for Clock 'U4/Clk1_D'
-  Total number of paths / destination ports: 291 / 7
--------------------------------------------------------------------------
-Offset:              10.443ns (Levels of Logic = 9)
-  Source:            SS (PAD)
-  Destination:       U3/cat_3 (FF)
-  Destination Clock: U4/Clk1_D rising
-
-  Data Path: SS to U3/cat_3
-                                Gate     Net
-    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
-    ----------------------------------------  ------------
-     IBUF:I->O            11   1.218   1.108  SS_IBUF (SS_IBUF)
-     LUT2_D:I0->O          9   0.704   0.855  U1/Disp<9>1162 (U1/N1)
-     LUT4:I2->O            8   0.704   0.836  U1/Disp<0>31 (U1/N20)
-     LUT2:I1->O            1   0.704   0.000  U1/Disp<1>311 (U1/Disp<1>311)
-     MUXF5:I1->O           1   0.321   0.499  U1/Disp<1>31_f5 (U1/Disp<1>31)
-     LUT4:I1->O            1   0.704   0.000  U3/Mmux_DataN_41 (U3/Mmux_DataN_41)
-     MUXF5:I0->O          12   0.321   1.136  U3/Mmux_DataN_2_f5_0 (U3/DataN<1>)
-     LUT4:I0->O            1   0.704   0.000  U3/CatInt<3>_G (N96)
-     MUXF5:I1->O           1   0.321   0.000  U3/CatInt<3> (U3/CatInt<3>)
-     FDC:D                     0.308          U3/cat_3
-    ----------------------------------------
-    Total                     10.443ns (6.009ns logic, 4.434ns route)
-                                       (57.5% logic, 42.5% route)
-
-=========================================================================
 Timing constraint: Default OFFSET IN BEFORE for Clock 'U1/State_cmp_eq0002'
-  Total number of paths / destination ports: 8 / 8
+  Total number of paths / destination ports: 10 / 10
 -------------------------------------------------------------------------
-Offset:              4.467ns (Levels of Logic = 2)
+Offset:              4.246ns (Levels of Logic = 2)
   Source:            SS (PAD)
   Destination:       U1/RegVal_7 (LATCH)
   Destination Clock: U1/State_cmp_eq0002 falling
@@ -681,33 +681,34 @@ Offset:              4.467ns (Levels of Logic = 2)
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     IBUF:I->O            11   1.218   1.108  SS_IBUF (SS_IBUF)
-     LUT2:I0->O           10   0.704   0.882  U1/State_FSM_FFd2-In210 (U1/SSpuls)
-     LDE:GE                    0.555          U1/RegVal_7
+     IBUF:I->O             5   1.218   0.808  SS_IBUF (SS_IBUF)
+     LUT2:I0->O           12   0.704   0.961  U1/SSpuls1 (U1/SSpuls)
+     LDE:GE                    0.555          U1/DispSel_1
     ----------------------------------------
-    Total                      4.467ns (2.477ns logic, 1.990ns route)
-                                       (55.5% logic, 44.5% route)
+    Total                      4.246ns (2.477ns logic, 1.769ns route)
+                                       (58.3% logic, 41.7% route)
 
 =========================================================================
 Timing constraint: Default OFFSET IN BEFORE for Clock 'U0/Clk1_D1'
-  Total number of paths / destination ports: 62 / 52
+  Total number of paths / destination ports: 60 / 52
 -------------------------------------------------------------------------
-Offset:              5.870ns (Levels of Logic = 3)
+Offset:              7.037ns (Levels of Logic = 4)
   Source:            SS (PAD)
-  Destination:       U1/Freq_7 (FF)
+  Destination:       U1/Ampl_7 (FF)
   Destination Clock: U0/Clk1_D1 rising
 
-  Data Path: SS to U1/Freq_7
+  Data Path: SS to U1/Ampl_7
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     IBUF:I->O            11   1.218   1.108  SS_IBUF (SS_IBUF)
-     LUT2_D:I0->O          9   0.704   0.824  U1/Disp<9>1162 (U1/N1)
-     LUT4:I3->O            8   0.704   0.757  U1/FreqEn1 (U1/FreqEn)
-     FDCE:CE                   0.555          U1/Freq_0
+     IBUF:I->O             5   1.218   0.808  SS_IBUF (SS_IBUF)
+     LUT2:I0->O           12   0.704   0.965  U1/SSpuls1 (U1/SSpuls)
+     LUT4_D:I3->O          4   0.704   0.622  U1/AmplEn11 (U1/N0)
+     LUT3:I2->O            8   0.704   0.757  U1/AmplEn2 (U1/AmplEn)
+     FDCE:CE                   0.555          U1/Ampl_0
     ----------------------------------------
-    Total                      5.870ns (3.181ns logic, 2.689ns route)
-                                       (54.2% logic, 45.8% route)
+    Total                      7.037ns (3.885ns logic, 3.152ns route)
+                                       (55.2% logic, 44.8% route)
 
 =========================================================================
 Timing constraint: Default OFFSET IN BEFORE for Clock 'SCK'
@@ -732,7 +733,7 @@ Offset:              1.946ns (Levels of Logic = 1)
 Timing constraint: Default OFFSET OUT AFTER for Clock 'U0/Clk1_D1'
   Total number of paths / destination ports: 2367544622 / 10
 -------------------------------------------------------------------------
-Offset:              39.354ns (Levels of Logic = 40)
+Offset:              39.429ns (Levels of Logic = 40)
   Source:            U2/SinusDec/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/s3_init.ram/dpram.dp4x4.ram (RAM)
   Destination:       PWMOut (PAD)
   Source Clock:      U0/Clk1_D1 rising
@@ -778,13 +779,13 @@ Offset:              39.354ns (Levels of Logic = 40)
      XORCY:CI->O           1   0.804   0.499  U2/Madd_MulC_addsub0006_xor<14> (U2/MulC_addsub0006<14>)
      LUT4:I1->O            1   0.704   0.595  U2/MulC_mux0007<14>1 (U2/SigAmpl<5>)
      LUT2:I0->O            1   0.704   0.000  U2/Mcompar_PWM_cmp_le0000_lut<5> (U2/Mcompar_PWM_cmp_le0000_lut<5>)
-     MUXCY:S->O            2   0.864   0.451  U2/Mcompar_PWM_cmp_le0000_cy<5> (U2/Mcompar_PWM_cmp_le0000_cy<5>)
-     LUT4:I3->O            1   0.704   0.000  U2/PWMOut11 (U2/PWMOut1)
-     MUXF5:I1->O           2   0.321   0.447  U2/PWMOut1_f5 (LD_OBUF)
+     MUXCY:S->O            2   0.864   0.526  U2/Mcompar_PWM_cmp_le0000_cy<5> (U2/Mcompar_PWM_cmp_le0000_cy<5>)
+     LUT4:I1->O            1   0.704   0.000  U2/PWMOut12 (U2/PWMOut11)
+     MUXF5:I0->O           2   0.321   0.447  U2/PWMOut1_f5 (LD_OBUF)
      OBUF:I->O                 3.272          PWMOut_OBUF (PWMOut)
     ----------------------------------------
-    Total                     39.354ns (28.892ns logic, 10.462ns route)
-                                       (73.4% logic, 26.6% route)
+    Total                     39.429ns (28.892ns logic, 10.537ns route)
+                                       (73.3% logic, 26.7% route)
 
 =========================================================================
 Timing constraint: Default OFFSET OUT AFTER for Clock 'U4/Clk1_D'
@@ -808,14 +809,14 @@ Offset:              4.283ns (Levels of Logic = 1)
 =========================================================================
 
 
-Total REAL time to Xst completion: 13.00 secs
-Total CPU time to Xst completion: 13.04 secs
+Total REAL time to Xst completion: 9.00 secs
+Total CPU time to Xst completion: 9.50 secs
  
 --> 
 
-Total memory usage is 4526148 kilobytes
+Total memory usage is 4526128 kilobytes
 
 Number of errors   :    0 (   0 filtered)
-Number of warnings :    4 (   0 filtered)
+Number of warnings :    6 (   0 filtered)
 Number of infos    :    1 (   0 filtered)
 

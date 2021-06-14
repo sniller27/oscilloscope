@@ -131,7 +131,7 @@ end process;
 DispMux: Disp <= X"F1230" when DispSel = "0" else
                  X"4F0" & Freq when DispSel = X"1" else
                  X"4A0" & Ampl when DispSel = X"2" else
-                 X"450" & "000000" & Shape(7 downto 6);
+                 X"450" & Shape;
 
 -- next state (tilstandsmaskine)
 StateReg: process (Reset, CLK)
@@ -152,7 +152,7 @@ DataEn <= '0'; -- default value
 ShapeEn <= '0';
 AmplEn <= '0';
 FreqEn <= '0';
-DispSel <= "00"; -- RUN
+--DispSel <= "00"; -- RUN
 SigEn_internal <= '0';
 
 NextState <= State; -- set state (for at undgå latch?)
@@ -161,7 +161,6 @@ case State is
 
 --Sync
 when IdleS =>
-DispSel <= "11"; -- S
 if SSpuls='1' AND SPIdat="01010101" then -- 0x55
 --if SS='1' then -- 0x55
 
@@ -171,7 +170,6 @@ end if;
 
 --Read address
 when AddrS =>
-DispSel <= "10"; -- A
 if SSpuls='1' then
 
 	AdrEn <= '1'; -- enable address reading
@@ -183,7 +181,6 @@ end if;
 
 --Read_data
 when DataS =>
-DispSel <= "01"; -- F
 if SSpuls='1' then
 
 	DataEn <= '1'; -- enable data reading	
@@ -200,7 +197,7 @@ end if;
 
 --Checksum
 when ChksumS =>
-DispSel <= "00"; -- RUN
+--DispSel <= "00"; -- RUN
 if SSpuls = '1' then
 
 RegVal <= "01010101" XOR Addr XOR Data; -- checksum
@@ -219,7 +216,6 @@ RegVal <= "01010101" XOR Addr XOR Data; -- checksum
 			DispSel <= "01";
 		elsif Addr(1 downto 0)="11" then 
 			SigEn_internal <= '1';
-			DispSel <= "01";
 		end if;
 			NextState <= IdleS;
 	end if;
