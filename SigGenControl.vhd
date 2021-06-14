@@ -43,7 +43,7 @@ type StateType is (IdleS, AddrS, DataS, ChksumS);
 signal State, NextState: StateType;
 
 -- signaler
-signal AdrEn, DataEn, ShapeEn, AmplEn, FreqEn, SSold, SSpuls: std_logic;
+signal AdrEn, DataEn, ShapeEn, AmplEn, FreqEn, SSold, SSpuls, SigEn_internal: std_logic;
 signal SPIdat, RegVal, Addr, Data: std_logic_vector(7 downto 0);  
 signal DispSel: std_logic_vector(1 downto 0); -- display
 signal sync	:	std_logic_vector(7 downto 0);
@@ -115,6 +115,18 @@ begin
 	end if;
 end process;
 
+Sigreg: process (CLK, Reset)
+begin
+	if (Reset = '1') then SigEn <= '0'; -- async reset
+	elsif (CLK'event and CLK = '1') then -- nedadgående flanke (falling edge)
+		if (SigEn_internal = '1') then
+			SigEn <= Data(0);
+		end if;
+	end if;
+end process;
+
+
+
 -- Display
 DispMux: Disp <= X"F1230" when DispSel = "0" else
                  X"4F0" & Freq when DispSel = X"1" else
@@ -141,6 +153,7 @@ ShapeEn <= '0';
 AmplEn <= '0';
 FreqEn <= '0';
 DispSel <= "00"; -- RUN
+SigEn_internal <= '0';
 
 NextState <= State; -- set state (for at undgå latch?)
 
@@ -194,7 +207,6 @@ RegVal <= "01010101" XOR Addr XOR Data; -- checksum
  
  	-- compare checksums
 	if RegVal=SPIdat then
-			SigEn <= '1';
 			-- transfer data to correct address by using standard register (?)
 		if Addr(1 downto 0)="00" then 
 			ShapeEn <= '1';
@@ -204,6 +216,9 @@ RegVal <= "01010101" XOR Addr XOR Data; -- checksum
 			DispSel <= "10";
 		elsif Addr(1 downto 0)="10" then 
 			FreqEn <= '1';
+			DispSel <= "01";
+		elsif Addr(1 downto 0)="11" then 
+			SigEn_internal <= '1';
 			DispSel <= "01";
 		end if;
 			NextState <= IdleS;

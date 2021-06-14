@@ -1,7 +1,7 @@
 Release 14.3 - par P.40xd (nt64)
 Copyright (c) 1995-2012 Xilinx, Inc.  All rights reserved.
 
-Mon Jun 14 10:22:45 2021
+Mon Jun 14 12:36:44 2021
 
 
 INFO: The IO information is provided in three file formats as part of the Place and Route (PAR) process.  These formats are:
@@ -90,7 +90,7 @@ Pinout by Pin Number:
 |H2        |           |DIFFM    |IO_L07P_3/LHCLK6         |UNUSED   |           |3             |          |         |           |         |       |          |           |                |
 |H3        |           |DIFFS    |IO_L07N_3/LHCLK7         |UNUSED   |           |3             |          |         |           |         |       |          |           |                |
 |H12       |Cat<1>     |IOB      |IO_L06N_1/A5/RHCLK5      |OUTPUT   |LVCMOS25*  |1             |12        |SLOW     |NONE**     |         |       |LOCATED   |NO         |NONE            |
-|H13       |LD         |IOB      |IO_L06P_1/A6/RHCLK4/IRDY1|OUTPUT   |LVCMOS25*  |1             |12        |SLOW     |NONE**     |         |       |UNLOCATED |NO         |NONE            |
+|H13       |           |DIFFM    |IO_L06P_1/A6/RHCLK4/IRDY1|UNUSED   |           |1             |          |         |           |         |       |          |           |                |
 |H14       |           |         |GND                      |         |           |              |          |         |           |         |       |          |           |                |
 |J1        |           |         |GND                      |         |           |              |          |         |           |         |       |          |           |                |
 |J2        |           |         |VCCO_3                   |         |           |3             |          |         |           |         |2.50   |          |           |                |
@@ -102,7 +102,7 @@ Pinout by Pin Number:
 |K2        |           |         |NC                       |         |           |              |          |         |           |         |       |          |           |                |
 |K3        |           |IBUF     |IP/VREF_3                |UNUSED   |           |3             |          |         |           |         |       |          |           |                |
 |K12       |           |         |GND                      |         |           |              |          |         |           |         |       |          |           |                |
-|K13       |           |IOB      |IO/VREF_1                |UNUSED   |           |1             |          |         |           |         |       |          |           |                |
+|K13       |LD         |IOB      |IO/VREF_1                |OUTPUT   |LVCMOS25*  |1             |12        |SLOW     |NONE**     |         |       |UNLOCATED |NO         |NONE            |
 |K14       |An<3>      |IOB      |IO_L04P_1/A10/RHCLK0     |OUTPUT   |LVCMOS25*  |1             |12        |SLOW     |NONE**     |         |       |LOCATED   |NO         |NONE            |
 |L1        |           |DIFFM    |IO_L08P_3                |UNUSED   |           |3             |          |         |           |         |       |          |           |                |
 |L2        |           |DIFFS    |IO_L08N_3                |UNUSED   |           |3             |          |         |           |         |       |          |           |                |
