@@ -1,2 +1,3 @@
 vhdl work "C:\Users\Microsoft\Documents\ise projekter-filer\oscilloscope\ipcore_dir\SinusLUT.vhd"
+vhdl work "C:\Users\Microsoft\Documents\ise projekter-filer\oscilloscope\ipcore_dir\TriangleLUT.vhd"
 vhdl work "C:\Users\Microsoft\Documents\ise projekter-filer\oscilloscope\SigGenDatapath.vhd"

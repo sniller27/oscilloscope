@@ -1,2 +1,3 @@
 vhdl work "ipcore_dir/SinusLUT.vhd"
+vhdl work "ipcore_dir/TriangleLUT.vhd"
 vhdl work "SigGenDatapath.vhd"

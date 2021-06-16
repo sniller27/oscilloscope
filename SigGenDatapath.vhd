@@ -27,7 +27,7 @@ entity SigGenDatapath is
   Port ( Reset  : in std_logic;	
          Clk    : in std_logic;
          SigEN  : in std_logic;
-         Shape  : in std_logic_vector(1 downto 0);
+         Shape  : in std_logic_vector(2 downto 0);
          Ampl   : in std_logic_vector(7 downto 0);
          Freq   : in std_logic_vector(7 downto 0);
          PWMOut : out std_logic);
@@ -36,15 +36,17 @@ end SigGenDatapath;
 architecture Behavioral of SigGenDatapath is
 
 signal SigCnt, nSigCnt, FreqCnt: std_logic_vector(11 downto 0);
-signal Sig, SigSquare, SigSaw, SigSinus : std_logic_vector(7 downto 0); 
+signal Sig, SigSquare, SigSaw, SigSinus, SigTriangle : std_logic_vector(7 downto 0); 
 signal SigAmpl: std_logic_vector(6 downto 0); 
 signal PWMcnt: std_logic_vector(6 downto 0) := "0000000";
 signal PWM, PWMwrap : std_logic;
 
 begin
 
+--format: 00ffff0ff0ff (passer med logaritmisk skala)
 FreqDec: FreqCnt <= "00" & Freq(7 downto 6) & Freq(5 downto 4) & '0' & Freq(3 downto 2) & '0' & Freq(1 downto 0);
 
+--?
 FreqAdd: nSigCnt <= SigCnt + FreqCnt;
 
 
@@ -60,13 +62,15 @@ end process;
 
 SinusDec : entity WORK.SinusLUT PORT MAP (clka => Clk, addra => SigCnt, douta => SigSinus);
 
+TriangleDec : entity WORK.TriangleLUT PORT MAP (clka => Clk, addra => SigCnt, douta => SigTriangle);
+
 PWMcount: process(Reset, Clk)
 variable PWMcntvar: std_logic_vector(7 downto 0);
 begin
   if Reset = '1' then PWMcntvar := "00000000";
   elsif Clk'event and Clk = '1' then
     PWMcntvar := PWMcntvar + PWMinc;
-		if PWMcntvar > "10000000" then
+		if PWMcntvar > "10000000" then -- tæller op til 128
 			PWMcntvar := "00000000";
 		end if;
   end if;
@@ -79,9 +83,10 @@ SquareDec: SigSquare <= "00000000" when SigCnt < X"800" else "11111111";
 
 SawDec: SigSaw <= SigCnt(11 downto 4);
 
-SigMux: Sig <= X"FF" when Shape = "00" else
-               SigSquare when Shape = "01" else
-               SigSaw when Shape = "10" else
+SigMux: Sig <= X"FF" when Shape = "000" else
+               SigSquare when Shape = "001" else
+               SigSaw when Shape = "010" else
+					SigTriangle when Shape = "100" else
                SigSinus;
 
 
@@ -103,9 +108,10 @@ begin
 --  SigAmpl <= "1111111";
 end process;
 
-
+-- PWM signal
 PWMcomp: PWM <= '1' when PWMcnt <= SigAmpl else '0';
 
+-- Activate/Deactivate PWMout signal
 PWMon: PWMout <= PWM when SigEn = '1' else '0';
 
 end Behavioral;

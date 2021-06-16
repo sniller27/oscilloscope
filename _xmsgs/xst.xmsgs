@@ -9,7 +9,10 @@
 <arg fmt="%s" index="3">&lt;SPIdat&gt;, &lt;Addr&gt;, &lt;Data&gt;</arg>
 </msg>
 
-<msg type="warning" file="Xst" num="2211" delta="old" >&quot;<arg fmt="%s" index="1">C:/Users/Microsoft/Documents/ise projekter-filer/oscilloscope/SigGenDatapath.vhd</arg>&quot; line <arg fmt="%d" index="2">61</arg>: Instantiating black box module &lt;<arg fmt="%s" index="3">SinusLUT</arg>&gt;.
+<msg type="warning" file="Xst" num="2211" delta="old" >&quot;<arg fmt="%s" index="1">C:/Users/Microsoft/Documents/ise projekter-filer/oscilloscope/SigGenDatapath.vhd</arg>&quot; line <arg fmt="%d" index="2">63</arg>: Instantiating black box module &lt;<arg fmt="%s" index="3">SinusLUT</arg>&gt;.
+</msg>
+
+<msg type="warning" file="Xst" num="2211" delta="old" >&quot;<arg fmt="%s" index="1">C:/Users/Microsoft/Documents/ise projekter-filer/oscilloscope/SigGenDatapath.vhd</arg>&quot; line <arg fmt="%d" index="2">65</arg>: Instantiating black box module &lt;<arg fmt="%s" index="3">TriangleLUT</arg>&gt;.
 </msg>
 
 <msg type="warning" file="Xst" num="1780" delta="old" >Signal &lt;<arg fmt="%s" index="1">sync</arg>&gt; is never used or assigned. This unconnected signal will be trimmed during the optimization process.
