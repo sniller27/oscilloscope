@@ -36,7 +36,7 @@ end SigGenDatapath;
 architecture Behavioral of SigGenDatapath is
 
 signal SigCnt, nSigCnt, FreqCnt: std_logic_vector(11 downto 0);
-signal Sig, SigSquare, SigSaw, SigSinus, SigTriangle : std_logic_vector(7 downto 0); 
+signal Sig, SigSquare, SigSaw, SigSinus, SigTriangle, SigTest : std_logic_vector(7 downto 0); 
 signal SigAmpl: std_logic_vector(6 downto 0); 
 signal PWMcnt: std_logic_vector(6 downto 0) := "0000000";
 signal PWM, PWMwrap : std_logic;
@@ -63,6 +63,9 @@ end process;
 SinusDec : entity WORK.SinusLUT PORT MAP (clka => Clk, addra => SigCnt, douta => SigSinus);
 
 TriangleDec : entity WORK.TriangleLUT PORT MAP (clka => Clk, addra => SigCnt, douta => SigTriangle);
+--TriDec: SigTriangle <= SigCnt(10 downto 3) when SigCnt < x"800" else x"FF"-SigCnt(10 downto 3);
+
+--TestDec : entity WORK.TestLUT2 PORT MAP (clka => Clk, addra => SigCnt, douta => SigTest);
 
 PWMcount: process(Reset, Clk)
 variable PWMcntvar: std_logic_vector(7 downto 0);
@@ -87,6 +90,7 @@ SigMux: Sig <= X"FF" when Shape = "000" else
                SigSquare when Shape = "001" else
                SigSaw when Shape = "010" else
 					SigTriangle when Shape = "100" else
+					--SigTest when Shape = "101" else
                SigSinus;
 
 

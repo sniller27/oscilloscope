@@ -1,4 +1,4 @@
-V3 41
+V3 48
 FL "C:/Users/Microsoft/Documents/ise projekter-filer/oscilloscope/BTNdb.vhd" 2021/06/03.22:49:20 P.40xd
 EN work/BTNdb 1623223598 \
       FL "C:/Users/Microsoft/Documents/ise projekter-filer/oscilloscope/BTNdb.vhd" \
@@ -8,58 +8,72 @@ AR work/BTNdb/Behavioral 1623223599 \
       FL "C:/Users/Microsoft/Documents/ise projekter-filer/oscilloscope/BTNdb.vhd" \
       EN work/BTNdb 1623223598
 FL "C:/Users/Microsoft/Documents/ise projekter-filer/oscilloscope/DivClk.vhd" 2021/06/03.22:49:19 P.40xd
-EN work/DivClk 1623836849 \
+EN work/DivClk 1623922387 \
       FL "C:/Users/Microsoft/Documents/ise projekter-filer/oscilloscope/DivClk.vhd" \
       PB ieee/std_logic_1164 1350103243 PB ieee/std_logic_arith 1350103244 \
       PB ieee/STD_LOGIC_UNSIGNED 1350103247
-AR work/DivClk/DivClk_arch 1623836850 \
+AR work/DivClk/DivClk_arch 1623922388 \
       FL "C:/Users/Microsoft/Documents/ise projekter-filer/oscilloscope/DivClk.vhd" \
-      EN work/DivClk 1623836849
+      EN work/DivClk 1623922387
 FL "C:/Users/Microsoft/Documents/ise projekter-filer/oscilloscope/ipcore_dir/SinusLUT.vhd" 2021/06/08.09:53:46 P.40xd
-EN work/SinusLUT 1623836845 \
+EN work/SinusLUT 1623922383 \
       FL "C:/Users/Microsoft/Documents/ise projekter-filer/oscilloscope/ipcore_dir/SinusLUT.vhd" \
       PB ieee/std_logic_1164 1350103243
-AR work/SinusLUT/SinusLUT_a 1623836846 \
+AR work/SinusLUT/SinusLUT_a 1623922384 \
       FL "C:/Users/Microsoft/Documents/ise projekter-filer/oscilloscope/ipcore_dir/SinusLUT.vhd" \
-      EN work/SinusLUT 1623836845
+      EN work/SinusLUT 1623922383
+FL "C:/Users/Microsoft/Documents/ise projekter-filer/oscilloscope/ipcore_dir/TestLUT.vhd" 2021/06/16.14:24:54 P.40xd
+EN work/TestLUT 1623853993 \
+      FL "C:/Users/Microsoft/Documents/ise projekter-filer/oscilloscope/ipcore_dir/TestLUT.vhd" \
+      PB ieee/std_logic_1164 1350103243
+AR work/TestLUT/TestLUT_a 1623853994 \
+      FL "C:/Users/Microsoft/Documents/ise projekter-filer/oscilloscope/ipcore_dir/TestLUT.vhd" \
+      EN work/TestLUT 1623853993
+FL "C:/Users/Microsoft/Documents/ise projekter-filer/oscilloscope/ipcore_dir/TestLUT2.vhd" 2021/06/17.11:27:29 P.40xd
+EN work/TestLUT2 1623922118 \
+      FL "C:/Users/Microsoft/Documents/ise projekter-filer/oscilloscope/ipcore_dir/TestLUT2.vhd" \
+      PB ieee/std_logic_1164 1350103243
+AR work/TestLUT2/TestLUT2_a 1623922119 \
+      FL "C:/Users/Microsoft/Documents/ise projekter-filer/oscilloscope/ipcore_dir/TestLUT2.vhd" \
+      EN work/TestLUT2 1623922118
 FL "C:/Users/Microsoft/Documents/ise projekter-filer/oscilloscope/ipcore_dir/TriangleLUT.vhd" 2021/06/15.14:59:16 P.40xd
-EN work/TriangleLUT 1623836847 \
+EN work/TriangleLUT 1623922385 \
       FL "C:/Users/Microsoft/Documents/ise projekter-filer/oscilloscope/ipcore_dir/TriangleLUT.vhd" \
       PB ieee/std_logic_1164 1350103243
-AR work/TriangleLUT/TriangleLUT_a 1623836848 \
+AR work/TriangleLUT/TriangleLUT_a 1623922386 \
       FL "C:/Users/Microsoft/Documents/ise projekter-filer/oscilloscope/ipcore_dir/TriangleLUT.vhd" \
-      EN work/TriangleLUT 1623836847
+      EN work/TriangleLUT 1623922385
 FL "C:/Users/Microsoft/Documents/ise projekter-filer/oscilloscope/SevenSeg5.vhd" 2021/06/03.22:49:20 P.40xd
-EN work/SevenSeg5 1623836855 \
+EN work/SevenSeg5 1623922393 \
       FL "C:/Users/Microsoft/Documents/ise projekter-filer/oscilloscope/SevenSeg5.vhd" \
       PB ieee/std_logic_1164 1350103243 PB ieee/std_logic_arith 1350103244 \
       PB ieee/STD_LOGIC_UNSIGNED 1350103247
-AR work/SevenSeg5/SevenSeg_arch 1623836856 \
+AR work/SevenSeg5/SevenSeg_arch 1623922394 \
       FL "C:/Users/Microsoft/Documents/ise projekter-filer/oscilloscope/SevenSeg5.vhd" \
-      EN work/SevenSeg5 1623836855
+      EN work/SevenSeg5 1623922393
 FL "C:/Users/Microsoft/Documents/ise projekter-filer/oscilloscope/SigGenControl.vhd" 2021/06/16.11:41:58 P.40xd
-EN work/SigGenControl 1623836851 \
+EN work/SigGenControl 1623922389 \
       FL "C:/Users/Microsoft/Documents/ise projekter-filer/oscilloscope/SigGenControl.vhd" \
       PB ieee/std_logic_1164 1350103243 PB ieee/std_logic_arith 1350103244 \
       PB ieee/STD_LOGIC_UNSIGNED 1350103247
-AR work/SigGenControl/Behavioral 1623836852 \
+AR work/SigGenControl/Behavioral 1623922390 \
       FL "C:/Users/Microsoft/Documents/ise projekter-filer/oscilloscope/SigGenControl.vhd" \
-      EN work/SigGenControl 1623836851 CP Disp CP SSpuls
-FL "C:/Users/Microsoft/Documents/ise projekter-filer/oscilloscope/SigGenDatapath.vhd" 2021/06/16.11:46:32 P.40xd
-EN work/SigGenDatapath 1623836853 \
+      EN work/SigGenControl 1623922389 CP Disp CP SSpuls
+FL "C:/Users/Microsoft/Documents/ise projekter-filer/oscilloscope/SigGenDatapath.vhd" 2021/06/17.11:32:54 P.40xd
+EN work/SigGenDatapath 1623922391 \
       FL "C:/Users/Microsoft/Documents/ise projekter-filer/oscilloscope/SigGenDatapath.vhd" \
       PB ieee/std_logic_1164 1350103243 PB ieee/std_logic_arith 1350103244 \
       PB ieee/STD_LOGIC_UNSIGNED 1350103247
-AR work/SigGenDatapath/Behavioral 1623836854 \
+AR work/SigGenDatapath/Behavioral 1623922392 \
       FL "C:/Users/Microsoft/Documents/ise projekter-filer/oscilloscope/SigGenDatapath.vhd" \
-      EN work/SigGenDatapath 1623836853 CP FreqCnt CP nSigCnt CP work/SinusLUT \
+      EN work/SigGenDatapath 1623922391 CP FreqCnt CP nSigCnt CP work/SinusLUT \
       CP work/TriangleLUT CP PWMwrap CP SigSquare CP SigSaw CP Sig CP PWM CP PWMout
 FL "C:/Users/Microsoft/Documents/ise projekter-filer/oscilloscope/SigGenTop.vhd" 2021/06/16.11:02:58 P.40xd
-EN work/SigGenTop 1623836857 \
+EN work/SigGenTop 1623922395 \
       FL "C:/Users/Microsoft/Documents/ise projekter-filer/oscilloscope/SigGenTop.vhd" \
       PB ieee/std_logic_1164 1350103243 PB ieee/std_logic_arith 1350103244 \
       PB ieee/STD_LOGIC_UNSIGNED 1350103247
-AR work/SigGenTop/Behavioral 1623836858 \
+AR work/SigGenTop/Behavioral 1623922396 \
       FL "C:/Users/Microsoft/Documents/ise projekter-filer/oscilloscope/SigGenTop.vhd" \
-      EN work/SigGenTop 1623836857 CP work/DivClk CP work/SigGenControl \
+      EN work/SigGenTop 1623922395 CP work/DivClk CP work/SigGenControl \
       CP work/SigGenDataPath CP work/SevenSeg5 CP LD
