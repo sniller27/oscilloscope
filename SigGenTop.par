@@ -1,7 +1,7 @@
 Release 14.3 par P.40xd (nt64)
 Copyright (c) 1995-2012 Xilinx, Inc.  All rights reserved.
 
-DESKTOP-B5GTD2G::  Wed Jun 16 11:47:42 2021
+DESKTOP-B5GTD2G::  Thu Jun 17 10:52:28 2021
 
 par -w -intstyle ise -ol high -t 1 SigGenTop_map.ncd SigGenTop.ncd
 SigGenTop.pcf 
@@ -54,24 +54,24 @@ Placer effort level (-pl):    High
 Placer cost table entry (-t): 1
 Router effort level (-rl):    High 
 
-Starting initial Timing Analysis.  REAL time: 0 secs 
-Finished initial Timing Analysis.  REAL time: 0 secs 
+Starting initial Timing Analysis.  REAL time: 3 secs 
+Finished initial Timing Analysis.  REAL time: 3 secs 
 
 
 Starting Placer
-Total REAL time at the beginning of Placer: 0 secs 
-Total CPU  time at the beginning of Placer: 0 secs 
+Total REAL time at the beginning of Placer: 3 secs 
+Total CPU  time at the beginning of Placer: 2 secs 
 
 Phase 1.1  Initial Placement Analysis
-Phase 1.1  Initial Placement Analysis (Checksum:12fa19fe) REAL time: 1 secs 
+Phase 1.1  Initial Placement Analysis (Checksum:12fa19fe) REAL time: 4 secs 
 
 Phase 2.7  Design Feasibility Check
 INFO:Place:834 - Only a subset of IOs are locked. Out of 22 IOs, 21 are locked and 1 are not locked. If you would like
    to print the names of these IOs, please set the environment variable XIL_PAR_DESIGN_CHECK_VERBOSE to 1. 
-Phase 2.7  Design Feasibility Check (Checksum:12fa19fe) REAL time: 1 secs 
+Phase 2.7  Design Feasibility Check (Checksum:12fa19fe) REAL time: 4 secs 
 
 Phase 3.31  Local Placement Optimization
-Phase 3.31  Local Placement Optimization (Checksum:12fa19fe) REAL time: 1 secs 
+Phase 3.31  Local Placement Optimization (Checksum:12fa19fe) REAL time: 4 secs 
 
 Phase 4.2  Initial Clock and IO Placement
 ..........
@@ -83,20 +83,20 @@ WARNING:Place:1019 - A clock IOB / clock component pair have been found that are
    continue. This constraint disables all clock placer rules related to the specified COMP.PIN. The use of this override
    is highly discouraged as it may lead to very poor timing results. It is recommended that this error condition be
    corrected in the design.
-Phase 4.2  Initial Clock and IO Placement (Checksum:20fb3f4e) REAL time: 2 secs 
+Phase 4.2  Initial Clock and IO Placement (Checksum:20fb3f4e) REAL time: 6 secs 
 
 Phase 5.30  Global Clock Region Assignment
-Phase 5.30  Global Clock Region Assignment (Checksum:20fb3f4e) REAL time: 2 secs 
+Phase 5.30  Global Clock Region Assignment (Checksum:20fb3f4e) REAL time: 6 secs 
 
 Phase 6.36  Local Placement Optimization
-Phase 6.36  Local Placement Optimization (Checksum:20fb3f4e) REAL time: 2 secs 
+Phase 6.36  Local Placement Optimization (Checksum:20fb3f4e) REAL time: 6 secs 
 
 Phase 7.3  Local Placement Optimization
 ........
-Phase 7.3  Local Placement Optimization (Checksum:31f40ab6) REAL time: 2 secs 
+Phase 7.3  Local Placement Optimization (Checksum:31f40ab6) REAL time: 6 secs 
 
 Phase 8.5  Local Placement Optimization
-Phase 8.5  Local Placement Optimization (Checksum:31f40ab6) REAL time: 2 secs 
+Phase 8.5  Local Placement Optimization (Checksum:31f40ab6) REAL time: 6 secs 
 
 Phase 9.8  Global Placement
 .......
@@ -105,19 +105,19 @@ Phase 9.8  Global Placement
 .............................
 ......
 .........
-Phase 9.8  Global Placement (Checksum:87e7739) REAL time: 2 secs 
+Phase 9.8  Global Placement (Checksum:87e7739) REAL time: 7 secs 
 
 Phase 10.5  Local Placement Optimization
-Phase 10.5  Local Placement Optimization (Checksum:87e7739) REAL time: 2 secs 
+Phase 10.5  Local Placement Optimization (Checksum:87e7739) REAL time: 7 secs 
 
 Phase 11.18  Placement Optimization
-Phase 11.18  Placement Optimization (Checksum:224ebd74) REAL time: 2 secs 
+Phase 11.18  Placement Optimization (Checksum:224ebd74) REAL time: 7 secs 
 
 Phase 12.5  Local Placement Optimization
-Phase 12.5  Local Placement Optimization (Checksum:224ebd74) REAL time: 2 secs 
+Phase 12.5  Local Placement Optimization (Checksum:224ebd74) REAL time: 7 secs 
 
-Total REAL time to Placer completion: 2 secs 
-Total CPU  time to Placer completion: 2 secs 
+Total REAL time to Placer completion: 7 secs 
+Total CPU  time to Placer completion: 5 secs 
 Writing design to file SigGenTop.ncd
 
 
@@ -125,38 +125,38 @@ Writing design to file SigGenTop.ncd
 Starting Router
 
 
-Phase  1  : 1486 unrouted;      REAL time: 3 secs 
+Phase  1  : 1486 unrouted;      REAL time: 9 secs 
 
-Phase  2  : 1327 unrouted;      REAL time: 3 secs 
+Phase  2  : 1327 unrouted;      REAL time: 9 secs 
 
-Phase  3  : 311 unrouted;      REAL time: 3 secs 
+Phase  3  : 311 unrouted;      REAL time: 9 secs 
 
-Phase  4  : 327 unrouted; (Par is working to improve performance)     REAL time: 3 secs 
+Phase  4  : 327 unrouted; (Par is working to improve performance)     REAL time: 9 secs 
 
-Phase  5  : 0 unrouted; (Par is working to improve performance)     REAL time: 4 secs 
-
-Updating file: SigGenTop.ncd with current fully routed design.
-
-Phase  6  : 0 unrouted; (Par is working to improve performance)     REAL time: 4 secs 
-
-Phase  7  : 0 unrouted; (Par is working to improve performance)     REAL time: 6 secs 
+Phase  5  : 0 unrouted; (Par is working to improve performance)     REAL time: 9 secs 
 
 Updating file: SigGenTop.ncd with current fully routed design.
 
-Phase  8  : 0 unrouted; (Par is working to improve performance)     REAL time: 7 secs 
+Phase  6  : 0 unrouted; (Par is working to improve performance)     REAL time: 10 secs 
 
-Phase  9  : 0 unrouted; (Par is working to improve performance)     REAL time: 7 secs 
+Phase  7  : 0 unrouted; (Par is working to improve performance)     REAL time: 14 secs 
 
-Phase 10  : 0 unrouted; (Par is working to improve performance)     REAL time: 7 secs 
+Updating file: SigGenTop.ncd with current fully routed design.
 
-Phase 11  : 0 unrouted; (Par is working to improve performance)     REAL time: 7 secs 
+Phase  8  : 0 unrouted; (Par is working to improve performance)     REAL time: 14 secs 
 
-Phase 12  : 0 unrouted; (Par is working to improve performance)     REAL time: 7 secs 
+Phase  9  : 0 unrouted; (Par is working to improve performance)     REAL time: 14 secs 
+
+Phase 10  : 0 unrouted; (Par is working to improve performance)     REAL time: 14 secs 
+
+Phase 11  : 0 unrouted; (Par is working to improve performance)     REAL time: 14 secs 
+
+Phase 12  : 0 unrouted; (Par is working to improve performance)     REAL time: 14 secs 
 WARNING:Route:455 - CLK Net:U4/Clk1_D may have excessive skew because 
       0 CLK pins and 1 NON_CLK pins failed to route using a CLK template.
 
-Total REAL time to Router completion: 7 secs 
-Total CPU time to Router completion: 7 secs 
+Total REAL time to Router completion: 14 secs 
+Total CPU time to Router completion: 11 secs 
 
 Partition Implementation Status
 -------------------------------
@@ -231,8 +231,8 @@ Generating Pad Report.
 
 All signals are completely routed.
 
-Total REAL time to PAR completion: 7 secs 
-Total CPU time to PAR completion: 7 secs 
+Total REAL time to PAR completion: 15 secs 
+Total CPU time to PAR completion: 12 secs 
 
 Peak Memory Usage:  4395 MB
 
